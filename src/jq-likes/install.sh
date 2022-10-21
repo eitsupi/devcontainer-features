@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-USERNAME=${USERNAME:-"automatic"}
-
 JQ_VERSION=${JQVERSION:-"os-provided"}
 YQ_VERSION=${YQVERSION:-"none"}
 GOJQ_VERSION=${GOJQVERSION:-"none"}
@@ -20,23 +18,6 @@ architecture="$(dpkg --print-architecture)"
 if [ "${architecture}" != "amd64" ] && [ "${architecture}" != "arm64" ]; then
     echo "(!) Architecture $architecture unsupported"
     exit 1
-fi
-
-# Determine the appropriate non-root user
-if [ "${USERNAME}" = "auto" ] || [ "${USERNAME}" = "automatic" ]; then
-    USERNAME=""
-    POSSIBLE_USERS=("vscode" "node" "codespace" "$(awk -v val=1000 -F ":" '$3==val{print $1}' /etc/passwd)")
-    for CURRENT_USER in "${POSSIBLE_USERS[@]}"; do
-        if id -u "${CURRENT_USER}" >/dev/null 2>&1; then
-            USERNAME=${CURRENT_USER}
-            break
-        fi
-    done
-    if [ "${USERNAME}" = "" ]; then
-        USERNAME=root
-    fi
-elif [ "${USERNAME}" = "none" ] || ! id -u ${USERNAME} >/dev/null 2>&1; then
-    USERNAME=root
 fi
 
 apt_get_update() {
