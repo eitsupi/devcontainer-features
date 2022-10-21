@@ -22,6 +22,11 @@ Installs jq and jq like command line tools (yq, gojq).
 | yqVersion | Select version of yq. | string | none |
 | gojqVersion | Select version of gojq. | string | none |
 
+<!-- markdownlint-disable MD041 -->
+
+## Supported platforms
+
+`linux/amd64` and `linux/arm64` platforms `debian` and `ubuntu`.
 
 
 ---
