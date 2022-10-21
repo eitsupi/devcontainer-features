@@ -1,0 +1,47 @@
+{
+	"name": "jq and jq like tools",
+	"id": "jq-likes",
+	"version": "0.1.0",
+	"description": "Installs jq and jq like command line tools (yq, gojq).",
+	"documentationURL": "https://github.com/eitsupi/devcontainer-features/tree/main/src/jq-likes",
+	"options": {
+		"version": {
+			"type": "string",
+			"proposals": [
+				"latest"
+			],
+			"default": "latest",
+			"description": "Currently unused."
+		},
+		"jqVersion": {
+			"type": "string",
+			"enum": [
+				"os-provided",
+				"none"
+			],
+			"default": "os-provided",
+			"description": "Select version of jq."
+		},
+		"yqVersion": {
+			"type": "string",
+			"proposals": [
+				"latest",
+				"none"
+			],
+			"default": "none",
+			"description": "Select version of yq."
+		},
+		"gojqVersion": {
+			"type": "string",
+			"proposals": [
+				"latest",
+				"none"
+			],
+			"default": "none",
+			"description": "Select version of gojq."
+		}
+	},
+	"installsAfter": [
+		"ghcr.io/devcontainers/features/common-utils"
+	]
+}
