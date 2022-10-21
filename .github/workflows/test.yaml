@@ -23,8 +23,7 @@ jobs:
         id: filter
         with:
           filters: |
-            color: ./**/color/**
-            hello: ./**/hello/**
+            jq-likes: ./**/jq-likes/**
 
   test-detects:
     needs:
@@ -74,8 +73,7 @@ jobs:
     strategy:
       matrix:
         features:
-          - color
-          - hello
+          - jq-likes
         baseImage:
           - debian:stable-slim
           - ubuntu:focal
@@ -98,8 +96,7 @@ jobs:
     strategy:
       matrix:
         features:
-          - color
-          - hello
+          - jq-likes
     steps:
       - uses: actions/checkout@v3
 
