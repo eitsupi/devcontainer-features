@@ -1,0 +1,20 @@
+{
+	"yq-latest": {
+		"image": "debian:stable-slim",
+		"features": {
+			"jq-likes": {
+				"jqVersion": "none",
+				"yqVersion": "latest"
+			}
+		}
+	},
+	"gojq-latest": {
+		"image": "debian:stable-slim",
+		"features": {
+			"jq-likes": {
+				"jqVersion": "none",
+				"gojqVersion": "latest"
+			}
+		}
+	}
+}
