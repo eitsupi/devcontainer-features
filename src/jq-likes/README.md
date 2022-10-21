@@ -17,7 +17,6 @@ Installs jq and jq like command line tools (yq, gojq).
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| version | Currently unused. | string | latest |
 | jqVersion | Select version of jq. | string | os-provided |
 | yqVersion | Select version of yq. | string | none |
 | gojqVersion | Select version of gojq. | string | none |
