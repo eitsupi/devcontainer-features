@@ -1,5 +1,5 @@
 
-# jq and jq like tools (jq-likes)
+# jq, yq, gojq (jq-likes)
 
 Installs jq and jq like command line tools (yq, gojq).
 
