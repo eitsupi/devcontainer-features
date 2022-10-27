@@ -2,6 +2,8 @@
 
 TASK_VERSION=${VERSION:-"latest"}
 
+USERNAME=${USERNAME:-"automatic"}
+
 set -e
 
 # Clean up
@@ -16,6 +18,23 @@ architecture="$(dpkg --print-architecture)"
 if [ "${architecture}" != "amd64" ] && [ "${architecture}" != "arm64" ]; then
     echo "(!) Architecture $architecture unsupported"
     exit 1
+fi
+
+# Determine the appropriate non-root user
+if [ "${USERNAME}" = "auto" ] || [ "${USERNAME}" = "automatic" ]; then
+    USERNAME=""
+    POSSIBLE_USERS=("vscode" "node" "codespace" "$(awk -v val=1000 -F ":" '$3==val{print $1}' /etc/passwd)")
+    for CURRENT_USER in "${POSSIBLE_USERS[@]}"; do
+        if id -u "${CURRENT_USER}" >/dev/null 2>&1; then
+            USERNAME=${CURRENT_USER}
+            break
+        fi
+    done
+    if [ "${USERNAME}" = "" ]; then
+        USERNAME=root
+    fi
+elif [ "${USERNAME}" = "none" ] || ! id -u ${USERNAME} >/dev/null 2>&1; then
+    USERNAME=root
 fi
 
 apt_get_update() {
@@ -75,6 +94,45 @@ find_version_from_git_tags() {
     echo "${variable_name}=${!variable_name}"
 }
 
+setup_completions() {
+    local completions_dir=$1
+    local for_bash=${2:-"true"}
+    local for_zsh=${3:-"true"}
+    local for_fish=${4:-"true"}
+
+    # bash
+    local bash_profile_path="/home/${USERNAME}/.bashrc_profile"
+    local bash_comp_file="${completions_dir}/bash/task.bash"
+    if [ "$for_bash" = "true" ] && [ -f "$bash_comp_file" ]; then
+        if [ "$USERNAME" = "root" ]; then
+            bash_profile_path="/root/.bashrc_profile"
+        fi
+        echo "Installing bash completion..."
+        cat "$bash_comp_file" >>"$bash_profile_path"
+        chown -R "${USERNAME}:${USERNAME}" "$bash_profile_path"
+    fi
+
+    # zsh
+    local zsh_comp_file="${completions_dir}/zsh/_task"
+    if [ "$for_zsh" = "true" ] && [ -f "$zsh_comp_file" ] && [ -d /usr/local/share/zsh/site-functions/ ] ; then
+        echo "Installing zsh completion..."
+        mv "$zsh_comp_file" /usr/local/share/zsh/site-functions/_task
+    fi
+
+    # fish
+    local fish_config_dir="/home/${USERNAME}/.config/fish"
+    local fish_comp_file="${completions_dir}/fish/task.fish"
+    if [ "$USERNAME" = "root" ]; then
+        fish_config_dir="/root/.config/fish"
+    fi
+    if [ "$for_fish" = "true" ] && [ -f "$fish_comp_file" ] && [ -d "$fish_config_dir" ] ; then
+        echo "Installing fish completion..."
+        mkdir -p "$fish_config_dir/completions"
+        mv "$fish_comp_file" "$fish_config_dir/completions/task.fish"
+        chown -R "${USERNAME}:${USERNAME}" "$fish_config_dir"
+    fi
+}
+
 export DEBIAN_FRONTEND=noninteractive
 
 # Soft version matching
@@ -85,6 +143,10 @@ echo "Downloading Task..."
 mkdir /tmp/go-task
 curl -sL "https://github.com/go-task/task/releases/download/v${TASK_VERSION}/task_linux_${architecture}.tar.gz" | tar xz -C /tmp/go-task
 mv "/tmp/go-task/task" /usr/local/bin/task
+
+# Setup completions if needed
+setup_completions "/tmp/go-task/completion"
+
 rm -rf /tmp/go-task
 
 # Clean up
