@@ -25,6 +25,7 @@ jobs:
         with:
           filters: |
             jq-likes: ./**/jq-likes/**
+            go-task: ./**/go-task/**
 
   test-detects:
     needs:
@@ -75,6 +76,7 @@ jobs:
       matrix:
         features:
           - jq-likes
+          - go-task
         baseImage:
           - debian:stable-slim
           - ubuntu:focal
@@ -98,6 +100,7 @@ jobs:
       matrix:
         features:
           - jq-likes
+          - go-task
     steps:
       - uses: actions/checkout@v3
 
