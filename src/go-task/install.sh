@@ -117,6 +117,7 @@ setup_completions() {
     if [ "$for_zsh" = "true" ] && [ -f "$zsh_comp_file" ] && [ -d /usr/local/share/zsh/site-functions/ ] ; then
         echo "Installing zsh completion..."
         mv "$zsh_comp_file" /usr/local/share/zsh/site-functions/_task
+        chown -R "${USERNAME}:${USERNAME}" /usr/local/share/zsh/site-functions/_task
     fi
 
     # fish
