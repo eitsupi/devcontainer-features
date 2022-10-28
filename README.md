@@ -4,12 +4,16 @@ This repository is based on the [the `devcontainers/features` repository](https:
 
 ## Contents
 
+### [`go-task`](src/go-task/README.md)
+
+Install [Task](https://taskfile.dev), a task runner / build tool work with `Taskfile.yml` files.
+
 ### [`jq-likes`](src/jq-likes/README.md)
 
 Install [jq](https://stedolan.github.io/jq/),
 [yq](https://github.com/mikefarah/yq), and [gojq](https://github.com/itchyny/gojq).
 Useful command line tools for working with JSON or YAML.
 
-### [`go-task`](src/go-task/README.md)
+### [`mdbook`](src/mdbook/README.md)
 
-Install [Task](https://taskfile.dev), a task runner / build tool work with `Taskfile.yml` files.
+Install [mdBook](https://rust-lang.github.io/mdBook), a utility to create modern online books from Markdown files.
