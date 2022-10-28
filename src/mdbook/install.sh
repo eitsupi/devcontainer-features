@@ -2,8 +2,6 @@
 
 MDBOOK_VERSION=${VERSION:-"latest"}
 
-USERNAME=${USERNAME:-"automatic"}
-
 set -e
 
 # Clean up
