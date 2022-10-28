@@ -24,8 +24,9 @@ jobs:
         id: filter
         with:
           filters: |
-            jq-likes: ./**/jq-likes/**
             go-task: ./**/go-task/**
+            jq-likes: ./**/jq-likes/**
+            mdbook: ./**/mdbook/**
 
   test-detects:
     needs:
@@ -75,8 +76,9 @@ jobs:
     strategy:
       matrix:
         features:
-          - jq-likes
           - go-task
+          - jq-likes
+          - mdbook
         baseImage:
           - debian:stable-slim
           - ubuntu:focal
@@ -99,8 +101,9 @@ jobs:
     strategy:
       matrix:
         features:
-          - jq-likes
           - go-task
+          - jq-likes
+          - mdbook
     steps:
       - uses: actions/checkout@v3
 

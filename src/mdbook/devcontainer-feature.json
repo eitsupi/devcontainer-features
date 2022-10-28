@@ -1,0 +1,20 @@
+{
+	"name": "mdBook",
+	"id": "mdbook",
+	"version": "0.1.0",
+	"description": "Installs mdBook, a command line tool to create books with Markdown.",
+	"documentationURL": "https://github.com/eitsupi/devcontainer-features/tree/main/src/mdbook",
+	"options": {
+		"version": {
+			"type": "string",
+			"proposals": [
+				"latest"
+			],
+			"default": "latest",
+			"description": "Select version of mdBook."
+		}
+	},
+	"installsAfter": [
+		"ghcr.io/devcontainers/features/common-utils"
+	]
+}
