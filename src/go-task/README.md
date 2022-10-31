@@ -25,6 +25,10 @@ Installs Task, a task runner / simpler Make alternative.
 
 `linux/amd64` and `linux/arm64` platforms `debian` and `ubuntu`.
 
+## References
+
+- Task: <https://taskfile.dev>
+
 
 ---
 

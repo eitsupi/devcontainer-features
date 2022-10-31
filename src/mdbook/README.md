@@ -25,6 +25,10 @@ Installs mdBook, a command line tool to create books with Markdown.
 
 `linux/amd64` platform `debian` and `ubuntu`.
 
+## References
+
+- mdBook: <https://rust-lang.github.io/mdBook>
+
 
 ---
 
