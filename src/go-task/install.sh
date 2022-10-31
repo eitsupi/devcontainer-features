@@ -99,6 +99,7 @@ setup_completions() {
     local for_bash=${2:-"true"}
     local for_zsh=${3:-"true"}
     local for_fish=${4:-"true"}
+    local for_pwsh=${5:-"true"}
 
     # bash
     local bash_profile_path="/home/${USERNAME}/.bashrc_profile"
@@ -131,6 +132,28 @@ setup_completions() {
         mkdir -p "$fish_config_dir/completions"
         mv "$fish_comp_file" "$fish_config_dir/completions/task.fish"
         chown -R "${USERNAME}:${USERNAME}" "$fish_config_dir"
+    fi
+
+    # pwsh
+    local pwsh_script_dir="/home/${USERNAME}/.local/share/powershell/Scripts"
+    local pwsh_profile_dir="/home/${USERNAME}/.config/powershell"
+    local pwsh_comp_file="${completions_dir}/ps/task.ps1"
+
+    if [ "$USERNAME" = "root" ]; then
+        pwsh_script_dir="/root/.local/share/powershell/Scripts"
+        pwsh_profile_file="/root/.config/powershell/Microsoft.PowerShell_profile.ps1"
+    fi
+
+    local pwsh_profile_file="${pwsh_profile_dir}/Microsoft.PowerShell_profile.ps1"
+
+    if [ "$for_pwsh" = "true" ] && [ -f "$pwsh_comp_file" ] && [ -x "$(command -v pwsh)" ]; then
+        echo "Installing pwsh completion..."
+        mkdir -p "$pwsh_script_dir"
+        mkdir -p "$pwsh_profile_dir"
+        mv "$pwsh_comp_file" "${pwsh_script_dir}/task.ps1"
+        echo "Import-Module ${pwsh_script_dir}/task.ps1" >>"$pwsh_profile_file"
+        chown -R "${USERNAME}:${USERNAME}" "$pwsh_script_dir"
+        chown -R "${USERNAME}:${USERNAME}" "$pwsh_profile_dir"
     fi
 }
 
