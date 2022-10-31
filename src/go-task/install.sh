@@ -151,7 +151,7 @@ setup_completions() {
         mkdir -p "$pwsh_script_dir"
         mkdir -p "$pwsh_profile_dir"
         mv "$pwsh_comp_file" "${pwsh_script_dir}/task.ps1"
-        echo "Import-Module ${pwsh_script_dir}/task.ps1" >>"$pwsh_profile_file"
+        echo "Invoke-Expression -Command ${pwsh_script_dir}/task.ps1" >>"$pwsh_profile_file"
         if [ "$USERNAME" != "root" ]; then
             chown -R "${USERNAME}:${USERNAME}" "/home/${USERNAME}"
         fi
