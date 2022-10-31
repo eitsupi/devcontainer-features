@@ -149,10 +149,11 @@ setup_completions() {
     if [ "$for_pwsh" = "true" ] && [ -f "$pwsh_comp_file" ] && [ -x "$(command -v pwsh)" ]; then
         echo "Installing pwsh completion..."
         mkdir -p "$pwsh_script_dir"
+        mkdir -p "$pwsh_profile_dir"
         mv "$pwsh_comp_file" "${pwsh_script_dir}/task.ps1"
         echo "Import-Module ${pwsh_script_dir}/task.ps1" >>"$pwsh_profile_file"
         chown -R "${USERNAME}:${USERNAME}" "$pwsh_script_dir"
-        chown -R "${USERNAME}:${USERNAME}" "$pwsh_profile_file"
+        chown -R "${USERNAME}:${USERNAME}" "$pwsh_profile_dir"
     fi
 }
 
