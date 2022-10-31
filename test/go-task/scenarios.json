@@ -1,14 +1,16 @@
 {
-	"install-with-fish": {
+	"install-with-fish-pwsh-non-root": {
 		"image": "mcr.microsoft.com/devcontainers/base:debian",
 		"features": {
 			"ghcr.io/meaningful-ooo/devcontainer-features/fish": {},
+			"ghcr.io/devcontainers/features/powershell": {},
 			"go-task": {}
 		}
 	},
-	"install-with-pwsh": {
-		"image": "mcr.microsoft.com/devcontainers/base:debian",
+	"install-with-fish-pwsh-root": {
+		"image": "debian:stable-slim",
 		"features": {
+			"ghcr.io/meaningful-ooo/devcontainer-features/fish": {},
 			"ghcr.io/devcontainers/features/powershell": {},
 			"go-task": {}
 		}
