@@ -141,7 +141,7 @@ setup_completions() {
 
     if [ "$USERNAME" = "root" ]; then
         pwsh_script_dir="/root/.local/share/powershell/Scripts"
-        pwsh_profile_file="/root/.config/powershell/Microsoft.PowerShell_profile.ps1"
+        pwsh_profile_dir="/root/.config/powershell"
     fi
 
     local pwsh_profile_file="${pwsh_profile_dir}/Microsoft.PowerShell_profile.ps1"
