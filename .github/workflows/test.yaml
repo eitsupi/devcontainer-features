@@ -26,6 +26,7 @@ jobs:
           filters: |
             go-task: ./**/go-task/**
             jq-likes: ./**/jq-likes/**
+            just: ./**/just/**
             mdbook: ./**/mdbook/**
 
   test-detects:
@@ -78,6 +79,7 @@ jobs:
         features:
           - go-task
           - jq-likes
+          - just
           - mdbook
         baseImage:
           - debian:stable-slim
@@ -103,6 +105,7 @@ jobs:
         features:
           - go-task
           - jq-likes
+          - just
           - mdbook
     steps:
       - uses: actions/checkout@v3

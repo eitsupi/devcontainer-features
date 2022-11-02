@@ -14,6 +14,10 @@ Install [jq](https://stedolan.github.io/jq/),
 [yq](https://github.com/mikefarah/yq), and [gojq](https://github.com/itchyny/gojq).
 Useful command line tools for working with JSON or YAML.
 
+### [`just`](src/just/README.md)
+
+Install [just](https://just.systems/), a handy way to save and run project-specific commands work with `justfile`.
+
 ### [`mdbook`](src/mdbook/README.md)
 
 Install [mdBook](https://rust-lang.github.io/mdBook), a utility to create modern online books from Markdown files.
