@@ -13,10 +13,10 @@
 			"default": "latest",
 			"description": "Select version of nu."
 		},
-		"registerPlugins": {
+		"installPlugins": {
 			"type": "boolean",
 			"default": true,
-			"description": "Register bundled plugins. (Work with version 0.68.0 or later)"
+			"description": "Installs bundled plugins."
 		}
 	},
 	"installsAfter": [

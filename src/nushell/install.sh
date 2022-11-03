@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 VERSION=${VERSION:-"latest"}
-REGISTER_PLUGINS=${REGISTERPLUGINS:-"true"}
+INSTALL_PLUGINS=${INSTALLPLUGINS:-"true"}
 
 set -e
 
@@ -93,24 +93,6 @@ find_version_from_git_tags() {
     echo "${variable_name}=${!variable_name}"
 }
 
-register() {
-    local user_name=$1
-    local script_url=$2
-    local script_name="register-plugins.nu"
-    check_packages wget
-    mkdir -p /tmp/nu
-    wget -O "/tmp/nu/${script_name}" "${script_url}" || return 0
-    pushd /tmp/nu
-    echo "Install plugins..."
-    chmod +x "${script_name}"
-    mv nu_plugin_* /usr/local/bin
-    nu "${script_name}"
-    if [ "${user_name}" != "root" ]; then
-        su "${user_name}" -c "nu ${script_name}"
-    fi
-    popd
-}
-
 export DEBIAN_FRONTEND=noninteractive
 
 # Soft version matching
@@ -122,8 +104,9 @@ mkdir /tmp/nu
 curl -sL "https://github.com/nushell/nushell/releases/download/${VERSION}/nu-${VERSION}-$(uname -m)-unknown-linux-gnu.tar.gz" | tar xz -C /tmp/nu
 mv "/tmp/nu/nu" /usr/local/bin/nu
 
-if [ "${REGISTER_PLUGINS}" = "true" ]; then
-    register "${USERNAME}" "https://raw.githubusercontent.com/nushell/nushell/${VERSION}/register-plugins.nu"
+if [ "${INSTALL_PLUGINS}" = "true" ]; then
+    echo "Installing nushell plugins..."
+    mv /tmp/nu/nu_plugin_* /usr/local/bin
 fi
 
 rm -rf /tmp/nu
