@@ -1,0 +1,25 @@
+{
+	"name": "Nushell",
+	"id": "nushell",
+	"version": "0.1.0",
+	"description": "Installs Nushell.",
+	"documentationURL": "https://github.com/eitsupi/devcontainer-features/tree/main/src/nushell",
+	"options": {
+		"version": {
+			"type": "string",
+			"proposals": [
+				"latest"
+			],
+			"default": "latest",
+			"description": "Select version of nu."
+		},
+		"registerPlugins": {
+			"type": "boolean",
+			"default": true,
+			"description": "Register bundled plugins. (Work with version 0.68.0 or later)"
+		}
+	},
+	"installsAfter": [
+		"ghcr.io/devcontainers/features/common-utils"
+	]
+}
