@@ -3,7 +3,7 @@
 		"image": "debian:stable-slim",
 		"features": {
 			"nushell": {
-				"installPlugins: false
+				"installPlugins": false
 			}
 		}
 	}
