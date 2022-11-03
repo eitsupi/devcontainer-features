@@ -99,9 +99,9 @@ register() {
     local script_name="register-plugins.nu"
     check_packages wget
     mkdir -p /tmp/nu
-    wget "${script_url}" -o "/tmp/nu/${script_name}" || return 0
-    echo "Install plugins..."
     pushd /tmp/nu
+    wget -o "${script_name}" "${script_url}" || popd & return 0
+    echo "Install plugins..."
     chmod +x "${script_name}"
     mv nu_plugin_* /usr/local/bin
     nu "${script_name}"
