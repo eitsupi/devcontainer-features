@@ -6,7 +6,7 @@ set -e
 source dev-container-features-test-lib
 
 # Feature-specific tests
-check "plugins" ls /usr/local/bin/nu_plugin_* | wc -l | grep 0
+check "plugins" find /usr/local/bin/nu_plugin_* >/dev/null 2>&1 | wc -l | grep 0
 
 # Report result
 reportResults
