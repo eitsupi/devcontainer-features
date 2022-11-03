@@ -6,7 +6,7 @@ set -e
 source dev-container-features-test-lib
 
 # Feature-specific tests
-check "version" nu --version | grep "0.67"
+check "plugins" ls /usr/local/bin/nu_plugin_* | wc -l | grep 0
 
 # Report result
 reportResults

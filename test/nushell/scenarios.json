@@ -1,9 +1,9 @@
 {
-	"old-version": {
+	"not-install-plugins": {
 		"image": "debian:stable-slim",
 		"features": {
 			"nushell": {
-				"version": "0.67"
+				"installPlugins: false
 			}
 		}
 	}
