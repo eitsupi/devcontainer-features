@@ -1,0 +1,10 @@
+{
+	"old-version": {
+		"image": "debian:stable-slim",
+		"features": {
+			"nushell": {
+				"version": "0.67"
+			}
+		}
+	}
+}
