@@ -21,3 +21,7 @@ Install [just](https://just.systems/), a handy way to save and run project-speci
 ### [`mdbook`](src/mdbook/README.md)
 
 Install [mdBook](https://rust-lang.github.io/mdBook), a utility to create modern online books from Markdown files.
+
+### [`nushell`](src/nushell/README.md)
+
+Install [Nushell](https://www.nushell.sh), a new type of shell.

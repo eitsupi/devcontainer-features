@@ -1,0 +1,10 @@
+{
+	"not-install-plugins": {
+		"image": "debian:stable-slim",
+		"features": {
+			"nushell": {
+				"installPlugins": false
+			}
+		}
+	}
+}
