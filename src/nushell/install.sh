@@ -94,7 +94,7 @@ find_version_from_git_tags() {
 }
 
 register() {
-    local user=$1
+    local user_name=$1
     local script_url=$2
     local script_name="register-plugins.nu"
     check_packages wget
@@ -104,7 +104,10 @@ register() {
     pushd /tmp/nu
     chmod +x "${script_name}"
     mv nu_plugin_* /usr/local/bin
-    su "${user}" -c "nu ${script_name}"
+    nu "${script_name}"
+    if [ "${user_name}" != "root" ]; then
+        su "${user_name}" -c "nu ${script_name}"
+    fi
     popd
 }
 
