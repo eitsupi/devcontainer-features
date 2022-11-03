@@ -100,7 +100,7 @@ register() {
     check_packages wget
     mkdir -p /tmp/nu
     pushd /tmp/nu
-    wget -o "${script_name}" "${script_url}" || popd & return 0
+    wget "${script_url}" -O "${script_name}" || popd & return 0
     echo "Install plugins..."
     chmod +x "${script_name}"
     mv nu_plugin_* /usr/local/bin
