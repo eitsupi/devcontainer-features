@@ -14,10 +14,6 @@ Install [jq](https://stedolan.github.io/jq/),
 [yq](https://github.com/mikefarah/yq), and [gojq](https://github.com/itchyny/gojq).
 Useful command line tools for working with JSON or YAML.
 
-### [`just`](src/just/README.md)
-
-Install [just](https://just.systems/), a handy way to save and run project-specific commands work with `justfile`.
-
 ### [`mdbook`](src/mdbook/README.md)
 
 Install [mdBook](https://rust-lang.github.io/mdBook), a utility to create modern online books from Markdown files.
@@ -25,3 +21,11 @@ Install [mdBook](https://rust-lang.github.io/mdBook), a utility to create modern
 ### [`nushell`](src/nushell/README.md)
 
 Install [Nushell](https://www.nushell.sh), a new type of shell.
+
+## Deprecated contends
+
+### [`just`](deprecated/just/README.md)
+
+Install [just](https://just.systems/), a handy way to save and run project-specific commands work with `justfile`.
+Deprecated in favor of
+[`ghcr.io/guiyomh/features/just`](https://github.com/guiyomh/features/tree/main/src/just).
