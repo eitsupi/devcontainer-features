@@ -26,7 +26,6 @@ jobs:
           filters: |
             go-task: ./**/go-task/**
             jq-likes: ./**/jq-likes/**
-            just: ./**/just/**
             mdbook: ./**/mdbook/**
             nushell: ./**/nushell/**
 
@@ -80,7 +79,6 @@ jobs:
         features:
           - go-task
           - jq-likes
-          - just
           - mdbook
           - nushell
         baseImage:
@@ -107,7 +105,6 @@ jobs:
         features:
           - go-task
           - jq-likes
-          - just
           - mdbook
           - nushell
     steps:
