@@ -155,6 +155,20 @@ setup_yq_completions() {
     fi
 }
 
+setup_yq_completions() {
+    local username=$1
+    local completions_dir=$2
+    local for_zsh=${3:-"true"}
+
+    # zsh
+    local zsh_comp_file="${completions_dir}/_gojq"
+    if [ "${for_zsh}" = "true" ] && [ -f "${zsh_comp_file}" ] && [ -d /usr/local/share/zsh/site-functions/ ] ; then
+        echo "Installing zsh completion..."
+        mv "${zsh_comp_file}" /usr/local/share/zsh/site-functions/_gojq
+        chown -R "${username}:${username}" /usr/local/share/zsh/site-functions/_gojq
+    fi
+}
+
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "${JQ_VERSION}" = "os-provided" ]; then
@@ -184,6 +198,7 @@ if [ "${GOJQ_VERSION}" != "none" ]; then
     mkdir /tmp/gojq
     curl -sL "https://github.com/itchyny/gojq/releases/download/v${GOJQ_VERSION}/gojq_v${GOJQ_VERSION}_linux_${architecture}.tar.gz" | tar xz -C /tmp/gojq
     mv "/tmp/gojq/gojq_v${GOJQ_VERSION}_linux_${architecture}/gojq" /usr/local/bin/gojq
+    setup_yq_completions "${USERNAME}" "/tmp/gojq/gojq_v${GOJQ_VERSION}_linux_${architecture}"
     rm -rf /tmp/gojq
 fi
 
