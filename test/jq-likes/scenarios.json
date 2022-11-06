@@ -16,5 +16,39 @@
 				"gojqVersion": "latest"
 			}
 		}
-	}
+	},
+	"install-with-zsh-fish-pwsh-non-root": {
+		"image": "mcr.microsoft.com/devcontainers/base:debian",
+		"features": {
+			"ghcr.io/meaningful-ooo/devcontainer-features/fish": {},
+			"ghcr.io/devcontainers/features/powershell": {},
+			"jq-likes": {
+				"jqVersion": "none",
+				"yqVersion": "latest",
+				"gojqVersion": "latest"
+			}
+		}
+	},
+	"install-with-fish-pwsh-root": {
+		"image": "debian:stable-slim",
+		"features": {
+			"ghcr.io/meaningful-ooo/devcontainer-features/fish": {},
+			"ghcr.io/devcontainers/features/powershell": {},
+			"jq-likes": {
+				"jqVersion": "none",
+				"yqVersion": "latest",
+				"gojqVersion": "latest"
+			}
+		}
+	},
+	"yq-gojq-specific-version": {
+		"image": "debian:stable-slim",
+		"features": {
+			"jq-likes": {
+				"jqVersion": "none",
+				"yqVersion": "4.24",
+				"gojqVersion": "0.7"
+			}
+		}
+	},
 }
