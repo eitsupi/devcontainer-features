@@ -18,6 +18,7 @@
 			"type": "string",
 			"proposals": [
 				"latest",
+				"4",
 				"none"
 			],
 			"default": "none",
