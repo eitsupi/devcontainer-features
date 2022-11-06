@@ -40,5 +40,15 @@
 				"gojqVersion": "latest"
 			}
 		}
-	}
+	},
+	"yq-gojq-specific-version": {
+		"image": "debian:stable-slim",
+		"features": {
+			"jq-likes": {
+				"jqVersion": "none",
+				"yqVersion": "4.24",
+				"gojqVersion": "0.7"
+			}
+		}
+	},
 }
