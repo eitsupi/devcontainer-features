@@ -77,6 +77,63 @@ find_version_from_git_tags() {
     echo "${variable_name}=${!variable_name}"
 }
 
+setup_yq_completions() {
+    local username=$1
+    local for_bash=${2:-"true"}
+    local for_zsh=${3:-"true"}
+    local for_fish=${4:-"true"}
+    local for_pwsh=${5:-"true"}
+    # bash
+    if [ "${for_bash}" = "true" ] && [ -d /etc/bash_completion.d/ ]; then
+        if yq shell-completion bash >/dev/null 2>&1; then
+            echo "Installing bash completion..."
+            yq shell-completion bash >/etc/bash_completion.d/yq
+        fi
+    fi
+
+    # zsh
+    if [ "${for_zsh}" = "true" ] && [ -d /usr/local/share/zsh/site-functions/ ]; then
+        if yq shell-completion zsh >/dev/null 2>&1; then
+            echo "Installing zsh completion..."
+            yq shell-completion zsh >/usr/local/share/zsh/site-functions/_yq
+            chown -R "${username}:${username}" /usr/local/share/zsh/site-functions/_yq
+        fi
+    fi
+
+    # fish
+    local fish_config_dir="/home/${username}/.config/fish"
+    if [ "${username}" = "root" ]; then
+        fish_config_dir="/root/.config/fish"
+    fi
+    if [ "${for_fish}" = "true" ] && [ -d "${fish_config_dir}" ]; then
+        if yq shell-completion fish >/dev/null 2>&1; then
+            echo "Installing fish completion..."
+            yq shell-completion fish >"${fish_config_dir}/completions/yq.fish"
+            chown -R "${username}:${username}" "${fish_config_dir}"
+        fi
+    fi
+
+    # pwsh
+    local pwsh_script_dir="/home/${username}/.local/share/powershell/Scripts"
+    local pwsh_profile_dir="/home/${username}/.config/powershell"
+    if [ "${username}" = "root" ]; then
+        pwsh_script_dir="/root/.local/share/powershell/Scripts"
+        pwsh_profile_dir="/root/.config/powershell"
+    fi
+    local pwsh_profile_file="${pwsh_profile_dir}/Microsoft.PowerShell_profile.ps1"
+    if [ "${for_pwsh}" = "true" ] && [ -x "$(command -v pwsh)" ]; then
+        if yq shell-completion powershell >/dev/null 2>&1; then
+            echo "Installing pwsh completion..."
+            mkdir -p "${pwsh_script_dir}"
+            mkdir -p "${pwsh_profile_dir}"
+            yq shell-completion powershell >"${pwsh_script_dir}/yq.ps1"
+            echo "Invoke-Expression -Command ${pwsh_script_dir}/yq.ps1" >>"${pwsh_profile_file}"
+            chown -R "${username}:${username}" "${pwsh_script_dir}"
+            chown -R "${username}:${username}" "${pwsh_profile_dir}"
+        fi
+    fi
+}
+
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "${JQ_VERSION}" = "os-provided" ]; then
@@ -97,6 +154,7 @@ if [ "${YQ_VERSION}" != "none" ]; then
     ./install-man-page.sh
     popd
     rm -rf /tmp/yq
+    setup_yq_completions
 fi
 
 if [ "${GOJQ_VERSION}" != "none" ]; then
