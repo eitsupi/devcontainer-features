@@ -27,6 +27,20 @@ Installs jq and jq like command line tools (yq, gojq).
 
 `linux/amd64` and `linux/arm64` platforms `debian` and `ubuntu`.
 
+## Available versions
+
+The versions of yq and gojq can be specified by version number or `"latest"` as follows.
+
+```json
+"features": {
+    "ghcr.io/eitsupi/devcontainer-features/jq-likes:0": {
+        "jqVersion": "none",
+        "yqVersion": "4",
+        "gojqVersion": "latest"
+    }
+}
+```
+
 ## References
 
 - jq: <https://stedolan.github.io/jq>
