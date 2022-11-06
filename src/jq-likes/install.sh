@@ -155,7 +155,7 @@ setup_yq_completions() {
     fi
 }
 
-setup_yq_completions() {
+setup_gojq_completions() {
     local username=$1
     local completions_dir=$2
     local for_zsh=${3:-"true"}
@@ -198,7 +198,7 @@ if [ "${GOJQ_VERSION}" != "none" ]; then
     mkdir /tmp/gojq
     curl -sL "https://github.com/itchyny/gojq/releases/download/v${GOJQ_VERSION}/gojq_v${GOJQ_VERSION}_linux_${architecture}.tar.gz" | tar xz -C /tmp/gojq
     mv "/tmp/gojq/gojq_v${GOJQ_VERSION}_linux_${architecture}/gojq" /usr/local/bin/gojq
-    setup_yq_completions "${USERNAME}" "/tmp/gojq/gojq_v${GOJQ_VERSION}_linux_${architecture}"
+    setup_gojq_completions "${USERNAME}" "/tmp/gojq/gojq_v${GOJQ_VERSION}_linux_${architecture}"
     rm -rf /tmp/gojq
 fi
 
