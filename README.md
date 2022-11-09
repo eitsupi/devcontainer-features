@@ -22,7 +22,7 @@ Install [mdBook](https://rust-lang.github.io/mdBook), a utility to create modern
 
 Install [Nushell](https://www.nushell.sh), a new type of shell.
 
-## Deprecated contends
+## Deprecated contents
 
 ### [`just`](deprecated/just/README.md)
 
