@@ -7,9 +7,7 @@ Installs Nushell.
 
 ```json
 "features": {
-    "ghcr.io/eitsupi/devcontainer-features/nushell:0": {
-        "version": "latest"
-    }
+    "ghcr.io/eitsupi/devcontainer-features/nushell:0": {}
 }
 ```
 
