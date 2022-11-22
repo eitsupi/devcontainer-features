@@ -7,9 +7,7 @@ Installs jq and jq like command line tools (yq, gojq).
 
 ```json
 "features": {
-    "ghcr.io/eitsupi/devcontainer-features/jq-likes:0": {
-        "version": "latest"
-    }
+    "ghcr.io/eitsupi/devcontainer-features/jq-likes:0": {}
 }
 ```
 
