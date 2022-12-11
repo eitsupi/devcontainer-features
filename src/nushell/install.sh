@@ -102,12 +102,23 @@ check_packages curl ca-certificates
 echo "Downloading nushell..."
 mkdir /tmp/nu
 curl -sL "https://github.com/nushell/nushell/releases/download/${VERSION}/nu-${VERSION}-$(uname -m)-unknown-linux-gnu.tar.gz" | tar xz -C /tmp/nu
-mv "/tmp/nu/nu" /usr/local/bin/nu
+
+dirs=(/tmp/nu/nu-*)
+[ "${#dirs[@]}" -ge 2 ] && exit 1
+if [ -d "${dirs[0]}" ]; then
+    pushd "${dirs[0]}"
+else
+    pushd /tmp/nu
+fi
+
+mv "nu" /usr/local/bin/nu
 
 if [ "${INSTALL_PLUGINS}" = "true" ]; then
     echo "Installing nushell plugins..."
-    mv /tmp/nu/nu_plugin_* /usr/local/bin
+    mv nu_plugin_* /usr/local/bin
 fi
+
+popd
 
 rm -rf /tmp/nu
 
