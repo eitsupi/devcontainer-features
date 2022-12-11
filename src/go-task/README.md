@@ -7,7 +7,7 @@ Installs Task, a task runner / simpler Make alternative.
 
 ```json
 "features": {
-    "ghcr.io/eitsupi/devcontainer-features/go-task:0": {}
+    "ghcr.io/eitsupi/devcontainer-features/go-task:1": {}
 }
 ```
 
