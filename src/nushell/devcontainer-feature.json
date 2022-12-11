@@ -1,7 +1,7 @@
 {
 	"name": "Nushell",
 	"id": "nushell",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Installs Nushell.",
 	"documentationURL": "https://github.com/eitsupi/devcontainer-features/tree/main/src/nushell",
 	"options": {
