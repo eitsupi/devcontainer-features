@@ -1,0 +1,10 @@
+{
+	"install-non-stable": {
+		"image": "debian:stable-slim",
+		"features": {
+			"julia": {
+				"installNonStable": true
+			}
+		}
+	}
+}
