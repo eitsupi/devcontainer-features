@@ -14,5 +14,13 @@
 				"version": "1"
 			}
 		}
+	},
+	"version-1-6": {
+		"image": "debian:stable-slim",
+		"features": {
+			"julia": {
+				"version": "1.6"
+			}
+		}
 	}
 }
