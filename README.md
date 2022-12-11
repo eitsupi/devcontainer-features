@@ -16,7 +16,7 @@ Useful command line tools for working with JSON or YAML.
 
 ### [`julia`](src/julia/README.md)
 
-Install [Julia](https://julialang.org), witch is a high-level,
+Install [Julia](https://julialang.org), whitch is a high-level,
 high-performance dynamic language for technical computing.
 
 ### [`mdbook`](src/mdbook/README.md)
