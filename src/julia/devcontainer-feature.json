@@ -21,5 +21,12 @@
 	},
 	"installsAfter": [
 		"ghcr.io/devcontainers/features/common-utils"
-	]
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"julialang.language-julia"
+			]
+		}
+	}
 }
