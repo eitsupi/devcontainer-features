@@ -1,0 +1,32 @@
+{
+	"name": "Julia",
+	"id": "julia",
+	"version": "0.1.0",
+	"description": "Installs Julia",
+	"documentationURL": "https://github.com/eitsupi/devcontainer-features/tree/main/src/julia",
+	"options": {
+		"version": {
+			"type": "string",
+			"proposals": [
+				"latest"
+			],
+			"default": "latest",
+			"description": "Select version of Julia."
+		},
+		"installNonStable": {
+			"type": "boolean",
+			"default": false,
+			"description": "If ture, the non-stable versions are a candidate for installation. For example, the latest might be the latest RC version."
+		}
+	},
+	"installsAfter": [
+		"ghcr.io/devcontainers/features/common-utils"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"julialang.language-julia"
+			]
+		}
+	}
+}
