@@ -2,7 +2,7 @@
 
 TASK_VERSION=${VERSION:-"latest"}
 
-USERNAME=${USERNAME:-"automatic"}
+USERNAME=${USERNAME:-${_REMOTE_USER:-"automatic"}}
 
 set -e
 

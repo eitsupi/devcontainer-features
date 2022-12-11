@@ -4,7 +4,7 @@ JQ_VERSION=${JQVERSION:-"os-provided"}
 YQ_VERSION=${YQVERSION:-"none"}
 GOJQ_VERSION=${GOJQVERSION:-"none"}
 
-USERNAME=${USERNAME:-"automatic"}
+USERNAME=${USERNAME:-${_REMOTE_USER:-"automatic"}}
 
 set -e
 
