@@ -14,6 +14,11 @@ Install [jq](https://stedolan.github.io/jq/),
 [yq](https://github.com/mikefarah/yq), and [gojq](https://github.com/itchyny/gojq).
 Useful command line tools for working with JSON or YAML.
 
+### [`julia`](src/julia/README.md)
+
+Install [Julia](https://julialang.org), witch is a high-level,
+high-performance dynamic language for technical computing.
+
 ### [`mdbook`](src/mdbook/README.md)
 
 Install [mdBook](https://rust-lang.github.io/mdBook), a utility to create modern online books from Markdown files.
