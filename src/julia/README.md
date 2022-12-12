@@ -1,7 +1,7 @@
 
 # Julia (julia)
 
-Installs Julia
+Installs specific version of Julia.
 
 ## Example Usage
 
@@ -16,7 +16,7 @@ Installs Julia
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
 | version | Select version of Julia. | string | latest |
-| installNonStable | If ture, the non-stable versions are a candidate for installation. For example, the latest might be the latest RC version. | boolean | false |
+| allowNonStableVersion | If ture, the non-stable versions are candidates for installation. For example, the latest might be the latest alpha, beta, or RC version. | boolean | false |
 
 <!-- markdownlint-disable MD041 -->
 
