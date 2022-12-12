@@ -1,8 +1,8 @@
 {
 	"name": "Julia",
 	"id": "julia",
-	"version": "0.1.0",
-	"description": "Installs Julia",
+	"version": "0.2.0",
+	"description": "Installs specific version of Julia.",
 	"documentationURL": "https://github.com/eitsupi/devcontainer-features/tree/main/src/julia",
 	"options": {
 		"version": {
@@ -13,10 +13,10 @@
 			"default": "latest",
 			"description": "Select version of Julia."
 		},
-		"installNonStable": {
+		"allowNonStableVersion": {
 			"type": "boolean",
 			"default": false,
-			"description": "If ture, the non-stable versions are a candidate for installation. For example, the latest might be the latest RC version."
+			"description": "If ture, the non-stable versions are candidates for installation. For example, the latest might be the latest alpha, beta, or RC version."
 		}
 	},
 	"installsAfter": [
