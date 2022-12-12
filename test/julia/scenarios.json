@@ -3,7 +3,7 @@
 		"image": "debian:stable-slim",
 		"features": {
 			"julia": {
-				"installNonStable": true
+				"allowNonStableVersion": true
 			}
 		}
 	},
