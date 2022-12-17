@@ -80,7 +80,7 @@ export DEBIAN_FRONTEND=noninteractive
 # Soft version matching
 find_version_from_git_tags CLI_VERSION "https://github.com/duckdb/duckdb"
 
-check_packages curl ca-certificates zip
+check_packages curl ca-certificates unzip
 
 echo "Downloading DuckDB CLI..."
 
