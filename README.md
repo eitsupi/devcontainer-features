@@ -4,6 +4,10 @@ This repository is based on the [the `devcontainers/features` repository](https:
 
 ## Contents
 
+### [`duckdb-cli`](src/duckdb-cli/README.md)
+
+Install [DuckDB CLI](https://duckdb.org/docs/api/cli). DuckDB is an in-process SQL OLAP database management system .
+
 ### [`go-task`](src/go-task/README.md)
 
 Install [Task](https://taskfile.dev), a task runner / build tool work with `Taskfile.yml` files.
