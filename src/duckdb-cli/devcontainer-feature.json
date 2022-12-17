@@ -1,0 +1,20 @@
+{
+	"name": "DuckDB CLI",
+	"id": "duckdb-cli",
+	"version": "0.1.0",
+	"description": "DuckDB is an in-process SQL OLAP database management system.",
+	"documentationURL": "https://github.com/eitsupi/devcontainer-features/tree/main/src/duckdb-cli",
+	"options": {
+		"version": {
+			"type": "string",
+			"proposals": [
+				"latest"
+			],
+			"default": "latest",
+			"description": "Select version of DuckDB CLI."
+		}
+	},
+	"installsAfter": [
+		"ghcr.io/devcontainers/features/common-utils"
+	]
+}

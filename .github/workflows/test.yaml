@@ -24,6 +24,7 @@ jobs:
         id: filter
         with:
           filters: |
+            duckdb-cli: ./**/duckdb-cli/**
             go-task: ./**/go-task/**
             jq-likes: ./**/jq-likes/**
             julia: ./**/julia/**
@@ -78,6 +79,7 @@ jobs:
     strategy:
       matrix:
         features:
+          - duckdb-cli
           - go-task
           - jq-likes
           - julia
@@ -105,6 +107,7 @@ jobs:
     strategy:
       matrix:
         features:
+          - duckdb
           - go-task
           - jq-likes
           - julia
