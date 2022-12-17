@@ -1,0 +1,10 @@
+{
+	"version-0-5": {
+		"image": "debian:stable-slim",
+		"features": {
+			"duckdb-cli": {
+				"version": "0.5"
+			}
+		}
+	}
+}
