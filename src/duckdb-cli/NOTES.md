@@ -7,3 +7,4 @@
 ## References
 
 - DuckDB: <https://duckdb.org>
+- DuckDB CLI API <https://duckdb.org/docs/api/cli>
