@@ -1,4 +1,7 @@
 
+### **IMPORTANT NOTE**
+- **This Feature is deprecated, and will no longer receive any further updates/support.**
+
 # just (just)
 
 Installs just, just is a handy way to save and run project-specific commands on justfile.

@@ -1,4 +1,5 @@
 
+
 # Nushell (nushell)
 
 Installs Nushell.
