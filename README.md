@@ -33,7 +33,7 @@ Install [Nushell](https://www.nushell.sh), a new type of shell.
 
 ## Deprecated contents
 
-### [`just`](deprecated/just/README.md)
+### [`just`](src/just/README.md)
 
 Install [just](https://just.systems/), a handy way to save and run project-specific commands work with `justfile`.
 Deprecated in favor of
