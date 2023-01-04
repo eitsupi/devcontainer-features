@@ -7,9 +7,7 @@ Installs just, just is a handy way to save and run project-specific commands on 
 
 ```json
 "features": {
-    "ghcr.io/eitsupi/devcontainer-features/just:0": {
-        "version": "latest"
-    }
+    "ghcr.io/eitsupi/devcontainer-features/just:0": {}
 }
 ```
 
