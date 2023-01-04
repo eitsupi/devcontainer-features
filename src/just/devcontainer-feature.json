@@ -2,6 +2,7 @@
 	"name": "just",
 	"id": "just",
 	"version": "0.1.0",
+	"deprecated": true,
 	"description": "Installs just, just is a handy way to save and run project-specific commands on justfile.",
 	"documentationURL": "https://github.com/eitsupi/devcontainer-features/tree/main/src/just",
 	"options": {
