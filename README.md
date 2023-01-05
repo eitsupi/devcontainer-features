@@ -18,11 +18,6 @@ Install [jq](https://stedolan.github.io/jq/),
 [yq](https://github.com/mikefarah/yq), and [gojq](https://github.com/itchyny/gojq).
 Useful command line tools for working with JSON or YAML.
 
-### [`julia`](src/julia/README.md)
-
-Install [Julia](https://julialang.org), which is a high-level,
-high-performance dynamic language for technical computing.
-
 ### [`mdbook`](src/mdbook/README.md)
 
 Install [mdBook](https://rust-lang.github.io/mdBook), a utility to create modern online books from Markdown files.
@@ -33,8 +28,11 @@ Install [Nushell](https://www.nushell.sh), a new type of shell.
 
 ## Deprecated contents
 
+### [`julia`](src/julia/README.md)
+
+Install [Julia](https://julialang.org), which is a high-level,
+high-performance dynamic language for technical computing.
+
 ### [`just`](src/just/README.md)
 
 Install [just](https://just.systems/), a handy way to save and run project-specific commands work with `justfile`.
-Deprecated in favor of
-[`ghcr.io/guiyomh/features/just`](https://github.com/guiyomh/features/tree/main/src/just).
