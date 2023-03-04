@@ -128,6 +128,7 @@ setup_yq_completions() {
         if yq shell-completion fish >/dev/null 2>&1; then
             echo "Installing fish completion..."
             yq shell-completion fish >"${fish_config_dir}/completions/yq.fish"
+            chown -R "${username}:${username}" "${fish_config_dir}"
         fi
     fi
 
@@ -146,12 +147,9 @@ setup_yq_completions() {
             mkdir -p "${pwsh_profile_dir}"
             yq shell-completion powershell >"${pwsh_script_dir}/yq.ps1"
             echo "Invoke-Expression -Command ${pwsh_script_dir}/yq.ps1" >>"${pwsh_profile_file}"
+            chown -R "${username}:${username}" "${pwsh_script_dir}"
+            chown -R "${username}:${username}" "${pwsh_profile_dir}"
         fi
-    fi
-
-    # fix permissions
-    if [ "${username}" != "root" ]; then
-        chown -R "${username}:${username}" "/home/${username}"
     fi
 }
 
