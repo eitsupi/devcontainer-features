@@ -1,5 +1,4 @@
 
-
 # DuckDB CLI (duckdb-cli)
 
 DuckDB is an in-process SQL OLAP database management system.
