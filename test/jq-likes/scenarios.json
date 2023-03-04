@@ -50,15 +50,5 @@
 				"gojqVersion": "0.7"
 			}
 		}
-	},
-	"codespaces-universal": {
-		"image": "mcr.microsoft.com/devcontainers/universal:linux",
-		"features": {
-			"jq-likes": {
-				"jqVersion": "none",
-				"yqVersion": "latest",
-				"gojqVersion": "latest"
-			}
-		}
 	}
 }
