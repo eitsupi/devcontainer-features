@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 CLI_VERSION=${VERSION:-"latest"}
+DB_EXTENSIONS=("${EXTENSIONS//,/ }")
 
 set -e
 
@@ -93,6 +94,12 @@ mv duckdb /usr/bin/duckdb
 
 popd
 rm -rf /tmp/duckdb-cli
+
+for extension in "${DB_EXTENSIONS[@]}"; do
+    echo "Installing DuckDB '${extension}' extension..."
+    su "${USERNAME}" -c "duckdb -c \"install '${extension}'\""
+    echo "Done!"
+done
 
 # Clean up
 rm -rf /var/lib/apt/lists/*

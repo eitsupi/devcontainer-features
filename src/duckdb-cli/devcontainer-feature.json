@@ -12,9 +12,16 @@
 			],
 			"default": "latest",
 			"description": "Select version of DuckDB CLI."
+		},
+		"extensions": {
+			"type": "string",
+			"default": "",
+			"description": "Comma separated list of DuckDB extensions to install.",
+			"proposals": [
+				"",
+				"httpfs,sqlite_scanner"
+			]
 		}
 	},
-	"installsAfter": [
-		"ghcr.io/devcontainers/features/common-utils"
-	]
+	"installsAfter": ["ghcr.io/devcontainers/features/common-utils"]
 }
