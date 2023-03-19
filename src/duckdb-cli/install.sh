@@ -103,7 +103,7 @@ install_extensions() {
     for extension in "${extensions[@]}"; do
         echo "Installing DuckDB '${extension}' extension..."
         su "${username}" -c "duckdb -c \"install '${extension}'\""
-        echo "Done!"
+        echo "Install '${extension}' extension successfully!"
     done
 }
 
