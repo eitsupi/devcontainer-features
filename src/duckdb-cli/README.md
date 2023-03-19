@@ -7,7 +7,7 @@ DuckDB is an in-process SQL OLAP database management system.
 
 ```json
 "features": {
-    "ghcr.io/eitsupi/devcontainer-features/duckdb-cli:0": {}
+    "ghcr.io/eitsupi/devcontainer-features/duckdb-cli:1": {}
 }
 ```
 
@@ -16,6 +16,7 @@ DuckDB is an in-process SQL OLAP database management system.
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
 | version | Select version of DuckDB CLI. | string | latest |
+| extensions | Comma separated list of DuckDB extensions to install. | string | - |
 
 <!-- markdownlint-disable MD041 -->
 
@@ -23,10 +24,27 @@ DuckDB is an in-process SQL OLAP database management system.
 
 `linux/amd64` and `linux/arm64` platforms `debian` and `ubuntu`.
 
+## How to specify extensions?
+
+Specify extension names separated by commas in the `extensions` option.
+
+The following example installs `httpfs` and `sqlite_scanner`.
+
+```json
+"features": {
+    "ghcr.io/eitsupi/devcontainer-features/duckdb-cli:1": {
+        "extensions": "httpfs,sqlite_scanner"
+    }
+}
+```
+
+Currently, only supports signed extensions.
+
 ## References
 
 - DuckDB: <https://duckdb.org>
-- DuckDB CLI API <https://duckdb.org/docs/api/cli>
+- DuckDB CLI API: <https://duckdb.org/docs/api/cli>
+- DuckDB Extensions: <https://duckdb.org/docs/extensions/overview>
 
 
 ---
