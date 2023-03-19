@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 CLI_VERSION=${VERSION:-"latest"}
-DB_EXTENSIONS=("${EXTENSIONS//,/ }")
+EXTENSIONS=${EXTENSIONS:-""}
+
+USERNAME=${USERNAME:-${_REMOTE_USER:-"automatic"}}
 
 set -e
 
@@ -17,6 +19,23 @@ architecture="$(dpkg --print-architecture)"
 if [ "${architecture}" != "amd64" ] && [ "${architecture}" != "arm64" ]; then
     echo "(!) Architecture $architecture unsupported"
     exit 1
+fi
+
+# Determine the appropriate non-root user
+if [ "${USERNAME}" = "auto" ] || [ "${USERNAME}" = "automatic" ]; then
+    USERNAME=""
+    POSSIBLE_USERS=("vscode" "node" "codespace" "$(awk -v val=1000 -F ":" '$3==val{print $1}' /etc/passwd)")
+    for CURRENT_USER in "${POSSIBLE_USERS[@]}"; do
+        if id -u "${CURRENT_USER}" >/dev/null 2>&1; then
+            USERNAME=${CURRENT_USER}
+            break
+        fi
+    done
+    if [ "${USERNAME}" = "" ]; then
+        USERNAME=root
+    fi
+elif [ "${USERNAME}" = "none" ] || ! id -u "${USERNAME}" >/dev/null 2>&1; then
+    USERNAME=root
 fi
 
 apt_get_update() {
@@ -76,6 +95,18 @@ find_version_from_git_tags() {
     echo "${variable_name}=${!variable_name}"
 }
 
+install_extensions() {
+    local username=$1
+    local extensions=("${2//,/ }")
+    if [ "${#extensions[@]}" -gt 0 ]; then
+        for extension in "${extensions[@]}"; do
+            echo "Installing DuckDB '${extension}' extension..."
+            su "${username}" -c "duckdb -c \"install '${extension}'\""
+            echo "Done!"
+        done
+    fi
+}
+
 export DEBIAN_FRONTEND=noninteractive
 
 # Soft version matching
@@ -95,11 +126,9 @@ mv duckdb /usr/bin/duckdb
 popd
 rm -rf /tmp/duckdb-cli
 
-for extension in "${DB_EXTENSIONS[@]}"; do
-    echo "Installing DuckDB '${extension}' extension..."
-    su "${USERNAME}" -c "duckdb -c \"install '${extension}'\""
-    echo "Done!"
-done
+if [ -n "${EXTENSIONS}" ]; then
+    install_extensions "${USERNAME}" "${EXTENSIONS}"
+fi
 
 # Clean up
 rm -rf /var/lib/apt/lists/*
