@@ -97,14 +97,14 @@ find_version_from_git_tags() {
 
 install_extensions() {
     local username=$1
-    local extensions=("${2//,/ }")
-    if [ "${#extensions[@]}" -gt 0 ]; then
-        for extension in "${extensions[@]}"; do
-            echo "Installing DuckDB '${extension}' extension..."
-            su "${username}" -c "duckdb -c \"install '${extension}'\""
-            echo "Done!"
-        done
-    fi
+    local extensions
+    IFS=',' read -r -a extensions <<< "$2"
+
+    for extension in "${extensions[@]}"; do
+        echo "Installing DuckDB '${extension}' extension..."
+        su "${username}" -c "duckdb -c \"install '${extension}'\""
+        echo "Done!"
+    done
 }
 
 export DEBIAN_FRONTEND=noninteractive
