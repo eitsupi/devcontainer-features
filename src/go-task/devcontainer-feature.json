@@ -19,5 +19,12 @@
 		"ghcr.io/devcontainers/features/common-utils",
 		"ghcr.io/devcontainers/features/powershell",
 		"ghcr.io/meaningful-ooo/devcontainer-features/fish"
-	]
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"task.vscode-task"
+			]
+		}
+	}
 }
