@@ -118,7 +118,8 @@ echo "Downloading DuckDB CLI..."
 
 mkdir /tmp/duckdb-cli
 pushd /tmp/duckdb-cli
-curl -sL "https://github.com/duckdb/duckdb/releases/download/v${CLI_VERSION}/duckdb_cli-linux-$(dpkg --print-architecture).zip" -o duckdb_cli.zip
+echo "CURLING" curl -sL "https://github.com/duckdb/duckdb/releases/download/v${CLI_VERSION}/duckdb_cli-linux-$(dpkg --print-architecture).zip" -o duckdb_cli.zip
+curl -L "https://github.com/duckdb/duckdb/releases/download/v${CLI_VERSION}/duckdb_cli-linux-$(dpkg --print-architecture).zip" -o duckdb_cli.zip
 
 unzip duckdb_cli.zip
 mv duckdb /usr/bin/duckdb
