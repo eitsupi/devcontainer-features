@@ -17,6 +17,12 @@ Installs Task, a task runner / simpler Make alternative.
 |-----|-----|-----|-----|
 | version | Select version of Task. | string | latest |
 
+## Customizations
+
+### VS Code Extensions
+
+- `task.vscode-task`
+
 <!-- markdownlint-disable MD041 -->
 
 ## Supported platforms

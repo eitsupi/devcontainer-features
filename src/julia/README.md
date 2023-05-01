@@ -18,6 +18,12 @@ Installs specific version of Julia.
 | version | Select version of Julia. | string | latest |
 | allowNonStableVersion | If ture, the non-stable versions are candidates for installation. For example, the latest might be the latest alpha, beta, or RC version. | boolean | false |
 
+## Customizations
+
+### VS Code Extensions
+
+- `julialang.language-julia`
+
 <!-- markdownlint-disable MD041 -->
 
 ## Available versions
