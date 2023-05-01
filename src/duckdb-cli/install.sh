@@ -118,8 +118,9 @@ echo "Downloading DuckDB CLI..."
 
 mkdir /tmp/duckdb-cli
 pushd /tmp/duckdb-cli
-echo "CURLING" curl -sL "https://github.com/duckdb/duckdb/releases/download/v${CLI_VERSION}/duckdb_cli-linux-$(dpkg --print-architecture).zip" -o duckdb_cli.zip
-curl -L "https://github.com/duckdb/duckdb/releases/download/v${CLI_VERSION}/duckdb_cli-linux-$(dpkg --print-architecture).zip" -o duckdb_cli.zip
+duckdb_arch=$(dpkg --print-architecture)
+if [ "${duckdb_arch}" = "arm64" ] ; then duckdb_arch="aarch64" ; fi
+curl -fL --no-progress-meter "https://github.com/duckdb/duckdb/releases/download/v${CLI_VERSION}/duckdb_cli-linux-${duckdb_arch}.zip" -o duckdb_cli.zip
 
 unzip duckdb_cli.zip
 mv duckdb /usr/bin/duckdb
