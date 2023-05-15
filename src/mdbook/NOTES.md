@@ -2,7 +2,7 @@
 
 ## Supported platforms
 
-`linux/amd64` platform `debian` and `ubuntu`.
+`linux/amd64` and `linux/arm64` platforms `debian` and `ubuntu`.
 
 ## References
 
