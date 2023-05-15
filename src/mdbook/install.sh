@@ -13,7 +13,7 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 architecture="$(dpkg --print-architecture)"
-if [ "${architecture}" != "amd64" ]; then
+if [ "${architecture}" != "amd64" ] && [ "${architecture}" != "arm64" ]; then
     echo "(!) Architecture $architecture unsupported"
     exit 1
 fi
@@ -82,7 +82,7 @@ find_version_from_git_tags MDBOOK_VERSION "https://github.com/rust-lang/mdBook"
 
 check_packages curl ca-certificates
 echo "Downloading mdBook..."
-curl -sL "https://github.com/rust-lang/mdBook/releases/download/v${MDBOOK_VERSION}/mdbook-v${MDBOOK_VERSION}-$(uname -m)-unknown-linux-gnu.tar.gz" | tar xz -C /usr/local/bin
+curl -sL "https://github.com/rust-lang/mdBook/releases/download/v${MDBOOK_VERSION}/mdbook-v${MDBOOK_VERSION}-$(uname -m)-unknown-linux-musl.tar.gz" | tar xz -C /usr/local/bin
 
 # Clean up
 rm -rf /var/lib/apt/lists/*
