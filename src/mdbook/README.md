@@ -7,7 +7,7 @@ Installs mdBook, a command line tool to create books with Markdown.
 
 ```json
 "features": {
-    "ghcr.io/eitsupi/devcontainer-features/mdbook:0": {}
+    "ghcr.io/eitsupi/devcontainer-features/mdbook:1": {}
 }
 ```
 
@@ -21,7 +21,7 @@ Installs mdBook, a command line tool to create books with Markdown.
 
 ## Supported platforms
 
-`linux/amd64` platform `debian` and `ubuntu`.
+`linux/amd64` and `linux/arm64` platforms `debian` and `ubuntu`.
 
 ## References
 
