@@ -4,6 +4,8 @@ JQ_VERSION=${JQVERSION:-"os-provided"}
 YQ_VERSION=${YQVERSION:-"none"}
 GOJQ_VERSION=${GOJQVERSION:-"none"}
 
+ALLOW_JQ_RC=${ALLOWJQRCVERSION:-"false"}
+
 USERNAME=${USERNAME:-${_REMOTE_USER:-"automatic"}}
 
 set -e
@@ -68,6 +70,7 @@ find_version_from_git_tags() {
     local prefix=${3:-"tags/v"}
     local separator=${4:-"."}
     local last_part_optional=${5:-"false"}
+    local suffix=${6:-""}
     if [ "$(echo "${requested_version}" | grep -o "." | wc -l)" != "2" ]; then
         local escaped_separator=${separator//./\\.}
         local last_part
@@ -76,7 +79,7 @@ find_version_from_git_tags() {
         else
             last_part="${escaped_separator}[0-9]+"
         fi
-        local regex="${prefix}\\K[0-9]+${escaped_separator}[0-9]+${last_part}$"
+        local regex="${prefix}\\K[0-9]+${escaped_separator}[0-9]+${last_part}${suffix}$"
         local version_list
         check_git
         check_packages ca-certificates
@@ -171,11 +174,29 @@ export DEBIAN_FRONTEND=noninteractive
 
 if [ "${JQ_VERSION}" = "os-provided" ]; then
     check_packages jq
+else
+    if [ "${ALLOW_JQ_RC}" = "true" ]; then
+        jq_version_suffix="rc[0-9]+"
+    else
+        jq_version_suffix=""
+    fi
+    # Soft version matching
+    find_version_from_git_tags JQ_VERSION "https://github.com/jqlang/jq" "tags/jq-" "." "true" "${jq_version_suffix}"
 fi
 
 # Soft version matching
 find_version_from_git_tags YQ_VERSION "https://github.com/mikefarah/yq"
 find_version_from_git_tags GOJQ_VERSION "https://github.com/itchyny/gojq"
+
+if [ "${JQ_VERSION}" != "os-provided" ] && [ "${JQ_VERSION}" != "none" ]; then
+    check_packages curl ca-certificates
+    echo "Downloading jq..."
+    mkdir /tmp/jq
+    curl -sL "https://github.com/jqlang/jq/releases/download/jq-${JQ_VERSION}/jq-linux-${architecture}" -o /tmp/jq/jq
+    mv /tmp/jq/jq /usr/local/bin/jq
+    chmod +x /usr/local/bin/jq
+    rm -rf /tmp/jq
+fi
 
 if [ "${YQ_VERSION}" != "none" ]; then
     check_packages curl ca-certificates
