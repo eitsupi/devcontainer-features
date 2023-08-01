@@ -32,8 +32,6 @@ and for to install RC versions, another option `"allowJqRcVersion"` must be set 
 
 If `"jqVersion": "os-provided"` is specified (default), jq will be installed via the package manager.
 
-```json
-
 ## References
 
 - jq: <https://stedolan.github.io/jq>
