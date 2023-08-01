@@ -6,7 +6,7 @@ set -e
 source dev-container-features-test-lib
 
 # Feature-specific tests
-check "version" jq --version
+check "version" bash -c "jq --version | grep -q 'jq-1.7rc1'"
 
 # Report result
 reportResults
