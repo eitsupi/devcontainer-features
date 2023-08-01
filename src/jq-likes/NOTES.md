@@ -18,6 +18,22 @@ The versions of yq and gojq can be specified by version number or `"latest"` as 
 }
 ```
 
+Also specify the version of jq to be installed with `"jqVersion"`. But **this option only supports jq version 1.7rc1 or later**,
+and for to install RC versions, another option `"allowJqRcVersion"` must be set to `true`.
+
+```json
+"features": {
+    "ghcr.io/eitsupi/devcontainer-features/jq-likes:1": {
+        "jqVersion": "1.7rc1",
+        "allowJqRcVersion": true
+    }
+}
+```
+
+If `"jqVersion": "os-provided"` is specified (default), jq will be installed via the package manager.
+
+```json
+
 ## References
 
 - jq: <https://stedolan.github.io/jq>
