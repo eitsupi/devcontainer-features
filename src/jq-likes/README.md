@@ -56,7 +56,7 @@ If `"jqVersion": "os-provided"` is specified (default), jq will be installed via
 
 ## References
 
-- jq: <https://stedolan.github.io/jq>
+- jq: <https://jqlang.github.io/jq/>
 - yq: <https://mikefarah.gitbook.io/yq>
 - gojq: <https://github.com/itchyny/gojq>
 
