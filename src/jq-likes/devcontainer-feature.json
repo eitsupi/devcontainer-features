@@ -1,7 +1,7 @@
 {
 	"name": "jq, yq, gojq",
 	"id": "jq-likes",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Installs jq and jq like command line tools (yq, gojq).",
 	"documentationURL": "https://github.com/eitsupi/devcontainer-features/tree/main/src/jq-likes",
 	"options": {

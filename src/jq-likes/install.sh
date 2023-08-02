@@ -83,7 +83,7 @@ find_version_from_git_tags() {
         local version_list
         check_git
         check_packages ca-certificates
-        version_list="$(git ls-remote --tags "${repository}" | grep -oP "${regex}" | tr -d ' ' | tr "${separator}" "." | sort -rV)"
+        version_list="$(git ls-remote --tags "${repository}" | grep -oP "${regex}" | tr -d ' ' | tr "${separator}" "." | sed "s/\([a-zA-Z]\+\)/-\1-/g" | sort -t - -k 1,1Vr -k 2,2 -k 3,3nr | sed "s/-//g")"
         if [ "${requested_version}" = "latest" ] || [ "${requested_version}" = "current" ] || [ "${requested_version}" = "lts" ]; then
             declare -g "${variable_name}"="$(echo "${version_list}" | head -n 1)"
         else
@@ -176,7 +176,7 @@ if [ "${JQ_VERSION}" = "os-provided" ]; then
     check_packages jq
 else
     if [ "${ALLOW_JQ_RC}" = "true" ]; then
-        jq_version_suffix="rc[0-9]+"
+        jq_version_suffix="(rc[0-9]+)?"
     else
         jq_version_suffix=""
     fi
