@@ -176,7 +176,7 @@ if [ "${JQ_VERSION}" = "os-provided" ]; then
     check_packages jq
 else
     if [ "${ALLOW_JQ_RC}" = "true" ]; then
-        jq_version_suffix="rc[0-9]+"
+        jq_version_suffix="(rc[0-9]+)?"
     else
         jq_version_suffix=""
     fi
