@@ -26,6 +26,15 @@
 			}
 		}
 	},
+	"xq-latest": {
+		"image": "debian:stable-slim",
+		"features": {
+			"jq-likes": {
+				"jqVersion": "none",
+				"xqVersion": "latest"
+			}
+		}
+	},
 	"install-with-zsh-fish-pwsh-non-root": {
 		"image": "mcr.microsoft.com/devcontainers/base:debian",
 		"features": {
@@ -56,7 +65,8 @@
 			"jq-likes": {
 				"jqVersion": "none",
 				"yqVersion": "4.24",
-				"gojqVersion": "0.7"
+				"gojqVersion": "0.7",
+				"xqVersion": "0.2"
 			}
 		}
 	}
