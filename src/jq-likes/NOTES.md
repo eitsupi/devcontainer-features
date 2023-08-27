@@ -6,14 +6,15 @@
 
 ## Available versions
 
-The versions of yq and gojq can be specified by version number or `"latest"` as follows.
+The versions of yq, gojq and xq can be specified by version number or `"latest"` as follows.
 
 ```json
 "features": {
     "ghcr.io/eitsupi/devcontainer-features/jq-likes:1": {
         "jqVersion": "none",
         "yqVersion": "4",
-        "gojqVersion": "latest"
+        "gojqVersion": "latest",
+        "xqVersion": "latest"
     }
 }
 ```
@@ -34,6 +35,7 @@ If `"jqVersion": "os-provided"` is specified (default), jq will be installed via
 
 ## References
 
-- jq: <https://jqlang.github.io/jq/>
+- jq: <https://jqlang.github.io/jq>
 - yq: <https://mikefarah.gitbook.io/yq>
 - gojq: <https://github.com/itchyny/gojq>
+- xq: <https://github.com/MiSawa/xq>

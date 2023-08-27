@@ -15,8 +15,8 @@ Install [Task](https://taskfile.dev), a task runner / build tool work with `Task
 ### [`jq-likes`](src/jq-likes/README.md)
 
 Install [jq](https://stedolan.github.io/jq/),
-[yq](https://github.com/mikefarah/yq), and [gojq](https://github.com/itchyny/gojq).
-Useful command line tools for working with JSON or YAML.
+[yq](https://github.com/mikefarah/yq), [gojq](https://github.com/itchyny/gojq), and [xq](https://github.com/MiSawa/xq).
+Useful command line tools for working with JSON or YAML and so on.
 
 ### [`julia`](src/julia/README.md)
 
