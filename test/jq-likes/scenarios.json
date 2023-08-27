@@ -59,7 +59,7 @@
 			}
 		}
 	},
-	"yq-gojq-specific-version": {
+	"yq-gojq-xq-specific-version": {
 		"image": "debian:stable-slim",
 		"features": {
 			"jq-likes": {
