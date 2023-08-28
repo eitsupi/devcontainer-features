@@ -1,3 +1,5 @@
+### **IMPORTANT NOTE**
+- **This Feature is deprecated, and will no longer receive any further updates/support.**
 
 # Julia (julia)
 
@@ -25,6 +27,11 @@ Installs specific version of Julia.
 - `julialang.language-julia`
 
 <!-- markdownlint-disable MD041 -->
+
+## Note about deprecation
+
+This Feature was deprecated in favor of
+[`ghcr.io/julialang/devcontainer-features/julia`](https://github.com/JuliaLang/devcontainer-features/tree/main/src/julia).
 
 ## Available versions
 
