@@ -8,6 +8,15 @@
 			}
 		}
 	},
+	"jq-latest-allow-rc": {
+		"image": "debian:stable-slim",
+		"features": {
+			"jq-likes": {
+				"jqVersion": "latest",
+				"allowJqRcVersion": true
+			}
+		}
+	},
 	"yq-latest": {
 		"image": "debian:stable-slim",
 		"features": {
