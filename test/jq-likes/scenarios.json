@@ -1,4 +1,12 @@
 {
+	"jq-latest": {
+		"image": "debian:stable-slim",
+		"features": {
+			"jq-likes": {
+				"jqVersion": "latest"
+			}
+		}
+	},
 	"jq-17rc": {
 		"image": "debian:stable-slim",
 		"features": {
