@@ -192,7 +192,7 @@ find_version_from_git_tags XQ_VERSION "https://github.com/MiSawa/xq"
 
 if [ "${JQ_VERSION}" != "os-provided" ] && [ "${JQ_VERSION}" != "none" ]; then
     check_packages curl ca-certificates
-    echo "Downloading jq..."
+    echo "Downloading jq ${JQ_VERSION}..."
     mkdir /tmp/jq
     curl -sL "https://github.com/jqlang/jq/releases/download/jq-${JQ_VERSION}/jq-linux-${architecture}" -o /tmp/jq/jq
     mv /tmp/jq/jq /usr/local/bin/jq
@@ -202,7 +202,7 @@ fi
 
 if [ "${YQ_VERSION}" != "none" ]; then
     check_packages curl ca-certificates
-    echo "Downloading yq..."
+    echo "Downloading yq ${YQ_VERSION}..."
     mkdir /tmp/yq
     curl -sL "https://github.com/mikefarah/yq/releases/download/v${YQ_VERSION}/yq_linux_${architecture}.tar.gz" | tar xz -C /tmp/yq
     mv "/tmp/yq/yq_linux_${architecture}" /usr/local/bin/yq
@@ -215,7 +215,7 @@ fi
 
 if [ "${GOJQ_VERSION}" != "none" ]; then
     check_packages curl ca-certificates
-    echo "Downloading gojq..."
+    echo "Downloading gojq ${GOJQ_VERSION}..."
     mkdir /tmp/gojq
     curl -sL "https://github.com/itchyny/gojq/releases/download/v${GOJQ_VERSION}/gojq_v${GOJQ_VERSION}_linux_${architecture}.tar.gz" | tar xz -C /tmp/gojq
     mv "/tmp/gojq/gojq_v${GOJQ_VERSION}_linux_${architecture}/gojq" /usr/local/bin/gojq
@@ -225,7 +225,7 @@ fi
 
 if [ "${XQ_VERSION}" != "none" ]; then
     check_packages curl ca-certificates
-    echo "Downloading xq..."
+    echo "Downloading xq ${XQ_VERSION}..."
     mkdir /tmp/xq
     curl -sL "https://github.com/MiSawa/xq/releases/download/v${XQ_VERSION}/xq-v${XQ_VERSION}-$(uname -m)-unknown-linux-musl.tar.gz" | tar xz -C /tmp/xq
     mv "/tmp/xq/xq-v${XQ_VERSION}-$(uname -m)-unknown-linux-musl/xq" /usr/local/bin/xq
