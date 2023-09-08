@@ -7,7 +7,7 @@ Installs jq and jq like command line tools (yq, gojq, xq).
 
 ```json
 "features": {
-    "ghcr.io/eitsupi/devcontainer-features/jq-likes:1": {}
+    "ghcr.io/eitsupi/devcontainer-features/jq-likes:2": {}
 }
 ```
 
@@ -15,7 +15,7 @@ Installs jq and jq like command line tools (yq, gojq, xq).
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| jqVersion | Select version of jq. | string | os-provided |
+| jqVersion | Select version of jq. | string | latest |
 | yqVersion | Select version of yq. | string | none |
 | gojqVersion | Select version of gojq. | string | none |
 | xqVersion | Select version of xq. | string | none |
@@ -55,7 +55,13 @@ To install RC versions of jq, another option `"allowJqRcVersion"` must be set to
 }
 ```
 
-If `"jqVersion": "os-provided"` is specified (default), jq will be installed via the package manager.
+If `"jqVersion": "os-provided"` is specified, jq will be installed via the package manager.
+
+## Release notes
+
+### 2.0.0
+
+- Change the default value of `jqVersion` from `"os-provided"` to `"latest"`.
 
 ## References
 
