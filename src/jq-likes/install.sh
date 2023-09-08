@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-JQ_VERSION=${JQVERSION:-"os-provided"}
+JQ_VERSION=${JQVERSION:-"latest"}
 YQ_VERSION=${YQVERSION:-"none"}
 GOJQ_VERSION=${GOJQVERSION:-"none"}
 XQ_VERSION=${XQVERSION:-"none"}
@@ -191,7 +191,9 @@ download_old_jq() {
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "${JQ_VERSION}" = "os-provided" ]; then
+    echo "Installing jq via OS package manager..."
     check_packages jq
+    JQ_VERSION="none"
 else
     if [ "${ALLOW_JQ_RC}" = "true" ]; then
         jq_version_suffix="(rc[0-9]+)?"
@@ -207,7 +209,7 @@ find_version_from_git_tags YQ_VERSION "https://github.com/mikefarah/yq"
 find_version_from_git_tags GOJQ_VERSION "https://github.com/itchyny/gojq"
 find_version_from_git_tags XQ_VERSION "https://github.com/MiSawa/xq"
 
-if [ "${JQ_VERSION}" != "os-provided" ] && [ "${JQ_VERSION}" != "none" ]; then
+if [ "${JQ_VERSION}" != "none" ]; then
     check_packages curl ca-certificates
     echo "Downloading jq ${JQ_VERSION}..."
     mkdir /tmp/jq
