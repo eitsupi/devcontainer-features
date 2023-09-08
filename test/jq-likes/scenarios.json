@@ -1,9 +1,9 @@
 {
-	"jq-latest": {
+	"jq-os": {
 		"image": "debian:stable-slim",
 		"features": {
 			"jq-likes": {
-				"jqVersion": "latest"
+				"jqVersion": "os-provided"
 			}
 		}
 	},

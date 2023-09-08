@@ -32,7 +32,13 @@ To install RC versions of jq, another option `"allowJqRcVersion"` must be set to
 }
 ```
 
-If `"jqVersion": "os-provided"` is specified (default), jq will be installed via the package manager.
+If `"jqVersion": "os-provided"` is specified, jq will be installed via the package manager.
+
+## Release notes
+
+### 2.0.0
+
+- Change the default value of `jqVersion` from `"os-provided"` to `"latest"`.
 
 ## References
 
