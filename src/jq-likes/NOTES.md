@@ -6,7 +6,9 @@
 
 ## Available versions
 
-The versions of yq, gojq and xq can be specified by version number or `"latest"` as follows.
+The versions of jq, yq, gojq and xq can be specified by version number or `"none"` or `"latest"` as follows.
+
+Note that for the `linux/arm64` platform, **the `jqVersion` option only supports jq version 1.7rc1 or later**.
 
 ```json
 "features": {
@@ -19,8 +21,7 @@ The versions of yq, gojq and xq can be specified by version number or `"latest"`
 }
 ```
 
-Also specify the version of jq to be installed with `"jqVersion"`. But **this option only supports jq version 1.7rc1 or later**,
-and for to install RC versions, another option `"allowJqRcVersion"` must be set to `true`.
+To install RC versions of jq, another option `"allowJqRcVersion"` must be set to `true`.
 
 ```json
 "features": {
