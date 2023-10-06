@@ -6,7 +6,7 @@
 
 ## Available versions
 
-The versions of jq, yq, gojq and xq can be specified by version number or `"none"` or `"latest"` as follows.
+The versions of jq, yq, gojq, xq and jaq can be specified by version number or `"none"` or `"latest"` as follows.
 
 Note that for the `linux/arm64` platform, **the `jqVersion` option only supports jq version 1.7rc1 or later**.
 
@@ -46,3 +46,4 @@ If `"jqVersion": "os-provided"` is specified, jq will be installed via the packa
 - yq: <https://mikefarah.gitbook.io/yq>
 - gojq: <https://github.com/itchyny/gojq>
 - xq: <https://github.com/MiSawa/xq>
+- jaq: <https://github.com/01mf02/jaq>
