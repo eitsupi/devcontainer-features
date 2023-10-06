@@ -4,6 +4,7 @@ JQ_VERSION=${JQVERSION:-"latest"}
 YQ_VERSION=${YQVERSION:-"none"}
 GOJQ_VERSION=${GOJQVERSION:-"none"}
 XQ_VERSION=${XQVERSION:-"none"}
+JAQ_VERSION=${JAQVERSION:-"none"}
 
 ALLOW_JQ_RC=${ALLOWJQRCVERSION:-"false"}
 
@@ -208,6 +209,7 @@ fi
 find_version_from_git_tags YQ_VERSION "https://github.com/mikefarah/yq"
 find_version_from_git_tags GOJQ_VERSION "https://github.com/itchyny/gojq"
 find_version_from_git_tags XQ_VERSION "https://github.com/MiSawa/xq"
+find_version_from_git_tags JAQ_VERSION "https://github.com/01mf02/jaq"
 
 if [ "${JQ_VERSION}" != "none" ]; then
     check_packages curl ca-certificates
@@ -250,6 +252,14 @@ if [ "${XQ_VERSION}" != "none" ]; then
     curl -fsL "https://github.com/MiSawa/xq/releases/download/v${XQ_VERSION}/xq-v${XQ_VERSION}-$(uname -m)-unknown-linux-musl.tar.gz" | tar xz -C /tmp/xq
     mv "/tmp/xq/xq-v${XQ_VERSION}-$(uname -m)-unknown-linux-musl/xq" /usr/local/bin/xq
     rm -rf /tmp/xq
+fi
+
+if [ "${JAQ_VERSION}" != "none" ]; then
+    check_packages curl ca-certificates
+    echo "Downloading jaq ${JAQ_VERSION}..."
+    curl -fsL "https://github.com/01mf02/jaq/releases/download/v${JAQ_VERSION}/jaq-v${JAQ_VERSION}-$(uname -m)-unknown-linux-musl" -o /usr/local/bin/jaq ||
+        curl -fsL "https://github.com/01mf02/jaq/releases/download/v${JAQ_VERSION}/jaq-v${JAQ_VERSION}-$(uname -m)-unknown-linux-gnu" -o /usr/local/bin/jaq
+    chmod +x /usr/local/bin/jaq
 fi
 
 # Clean up

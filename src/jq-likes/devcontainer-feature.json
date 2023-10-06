@@ -1,7 +1,7 @@
 {
 	"name": "jq, yq, gojq, xq",
 	"id": "jq-likes",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "Installs jq and jq like command line tools (yq, gojq, xq).",
 	"documentationURL": "https://github.com/eitsupi/devcontainer-features/tree/main/src/jq-likes",
 	"options": {
@@ -10,6 +10,7 @@
 			"proposals": [
 				"os-provided",
 				"latest",
+				"1",
 				"none"
 			],
 			"default": "latest",
@@ -42,6 +43,16 @@
 			],
 			"default": "none",
 			"description": "Select version of xq."
+		},
+		"jaqVersion": {
+			"type": "string",
+			"proposals": [
+				"latest",
+				"1",
+				"none"
+			],
+			"default": "none",
+			"description": "Select version of jaq."
 		},
 		"allowJqRcVersion": {
 			"type": "boolean",
