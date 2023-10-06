@@ -1,7 +1,7 @@
 
-# jq, yq, gojq, xq (jq-likes)
+# jq, yq, gojq, xq, jaq (jq-likes)
 
-Installs jq and jq like command line tools (yq, gojq, xq).
+Installs jq and jq like command line tools (yq, gojq, xq, jaq).
 
 ## Example Usage
 
@@ -19,6 +19,7 @@ Installs jq and jq like command line tools (yq, gojq, xq).
 | yqVersion | Select version of yq. | string | none |
 | gojqVersion | Select version of gojq. | string | none |
 | xqVersion | Select version of xq. | string | none |
+| jaqVersion | Select version of jaq. | string | none |
 | allowJqRcVersion | Allow jq pre-release RC version to be installed. | boolean | false |
 
 <!-- markdownlint-disable MD041 -->
@@ -29,7 +30,7 @@ Installs jq and jq like command line tools (yq, gojq, xq).
 
 ## Available versions
 
-The versions of jq, yq, gojq and xq can be specified by version number or `"none"` or `"latest"` as follows.
+The versions of jq, yq, gojq, xq and jaq can be specified by version number or `"none"` or `"latest"` as follows.
 
 Note that for the `linux/arm64` platform, **the `jqVersion` option only supports jq version 1.7rc1 or later**.
 
@@ -69,6 +70,7 @@ If `"jqVersion": "os-provided"` is specified, jq will be installed via the packa
 - yq: <https://mikefarah.gitbook.io/yq>
 - gojq: <https://github.com/itchyny/gojq>
 - xq: <https://github.com/MiSawa/xq>
+- jaq: <https://github.com/01mf02/jaq>
 
 
 ---
