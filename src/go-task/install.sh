@@ -104,20 +104,30 @@ setup_completions() {
     # bash
     local bash_profile_path="/home/${USERNAME}/.bashrc_profile"
     local bash_comp_file="${completions_dir}/bash/task.bash"
-    if [ "$for_bash" = "true" ] && [ -f "$bash_comp_file" ]; then
+    if [ "$for_bash" = "true" ]; then
         if [ "$USERNAME" = "root" ]; then
             bash_profile_path="/root/.bashrc_profile"
         fi
-        echo "Installing bash completion..."
-        cat "$bash_comp_file" >>"$bash_profile_path"
+        if task --completion bash >/dev/null 2>&1; then
+            echo "Installing bash completion by 'task --completion bash'..."
+            task --completion bash >>"$bash_profile_path"
+        elif [ -f "$bash_comp_file" ]; then
+            echo "Installing bash completion..."
+            cat "$bash_comp_file" >>"$bash_profile_path"
+        fi
         chown -R "${USERNAME}:${USERNAME}" "$bash_profile_path"
     fi
 
     # zsh
     local zsh_comp_file="${completions_dir}/zsh/_task"
-    if [ "$for_zsh" = "true" ] && [ -f "$zsh_comp_file" ] && [ -d /usr/local/share/zsh/site-functions/ ] ; then
-        echo "Installing zsh completion..."
-        mv "$zsh_comp_file" /usr/local/share/zsh/site-functions/_task
+    if [ "$for_zsh" = "true" ] && [ -d /usr/local/share/zsh/site-functions/ ]; then
+        if task --completion zsh >/dev/null 2>&1; then
+            echo "Installing zsh completion by 'task --completion zsh'..."
+            task --completion zsh >"/usr/local/share/zsh/site-functions/_task"
+        elif [ -f "$zsh_comp_file" ]; then
+            echo "Installing zsh completion..."
+            mv "$zsh_comp_file" /usr/local/share/zsh/site-functions/_task
+        fi
         chown -R "${USERNAME}:${USERNAME}" /usr/local/share/zsh/site-functions/_task
     fi
 
@@ -127,10 +137,14 @@ setup_completions() {
     if [ "$USERNAME" = "root" ]; then
         fish_config_dir="/root/.config/fish"
     fi
-    if [ "$for_fish" = "true" ] && [ -f "$fish_comp_file" ] && [ -d "$fish_config_dir" ] ; then
-        echo "Installing fish completion..."
-        mkdir -p "$fish_config_dir/completions"
-        mv "$fish_comp_file" "$fish_config_dir/completions/task.fish"
+    if [ "$for_fish" = "true" ] && [ -d "$fish_config_dir" ]; then
+        if task --completion fish >/dev/null 2>&1; then
+            echo "Installing fish completion by 'task --completion fish'..."
+            task --completion fish >"$fish_config_dir/completions/task.fish"
+        elif [ -f "$fish_comp_file" ]; then
+            echo "Installing fish completion..."
+            mv "$fish_comp_file" "$fish_config_dir/completions/task.fish"
+        fi
         chown -R "${USERNAME}:${USERNAME}" "$fish_config_dir"
     fi
 
@@ -146,10 +160,12 @@ setup_completions() {
 
     local pwsh_profile_file="${pwsh_profile_dir}/Microsoft.PowerShell_profile.ps1"
 
-    if [ "$for_pwsh" = "true" ] && [ -f "$pwsh_comp_file" ] && [ -x "$(command -v pwsh)" ]; then
+    # TODO: put `Invoke-Expression (&task --completion powershell)` on the profile does not seem working
+    # https://github.com/go-task/task/issues/1796
+    if [ "$for_pwsh" = "true" ] && [ -x "$(command -v pwsh)" ] && [ -f "$pwsh_comp_file" ]; then
+        mkdir -p "$pwsh_profile_dir"
         echo "Installing pwsh completion..."
         mkdir -p "$pwsh_script_dir"
-        mkdir -p "$pwsh_profile_dir"
         mv "$pwsh_comp_file" "${pwsh_script_dir}/task.ps1"
         echo "Invoke-Expression -Command ${pwsh_script_dir}/task.ps1" >>"$pwsh_profile_file"
         chown -R "${USERNAME}:${USERNAME}" "${pwsh_script_dir}"

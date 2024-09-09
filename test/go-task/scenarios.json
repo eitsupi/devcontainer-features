@@ -14,5 +14,25 @@
 			"ghcr.io/devcontainers/features/powershell": {},
 			"go-task": {}
 		}
+	},
+	"install-with-fish-pwsh-non-root-3_38": {
+		"image": "mcr.microsoft.com/devcontainers/base:debian",
+		"features": {
+			"ghcr.io/meaningful-ooo/devcontainer-features/fish": {},
+			"ghcr.io/devcontainers/features/powershell": {},
+			"go-task": {
+				"version": "3.38"
+			}
+		}
+	},
+	"install-with-fish-pwsh-root-3_38": {
+		"image": "debian:stable-slim",
+		"features": {
+			"ghcr.io/meaningful-ooo/devcontainer-features/fish": {},
+			"ghcr.io/devcontainers/features/powershell": {},
+			"go-task": {
+				"version": "3.38"
+			}
+		}
 	}
 }
