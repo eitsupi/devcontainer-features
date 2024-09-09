@@ -160,18 +160,15 @@ setup_completions() {
 
     local pwsh_profile_file="${pwsh_profile_dir}/Microsoft.PowerShell_profile.ps1"
 
-    if [ "$for_pwsh" = "true" ] && [ -x "$(command -v pwsh)" ]; then
+    # TODO: put `Invoke-Expression (&task --completion powershell)` on the profile does not seem working
+    # https://github.com/go-task/task/issues/1796
+    if [ "$for_pwsh" = "true" ] && [ -x "$(command -v pwsh)" ] && [ -f "$pwsh_comp_file" ]; then
         mkdir -p "$pwsh_profile_dir"
-        if task --completion powershell >/dev/null 2>&1; then
-            echo "Installing pwsh completion with 'task --completion powershell'..."
-            echo "Invoke-Expression (&task --completion powershell)" >>"$pwsh_profile_file"
-        elif [ -f "$pwsh_comp_file" ]; then
-            echo "Installing pwsh completion..."
-            mkdir -p "$pwsh_script_dir"
-            mv "$pwsh_comp_file" "${pwsh_script_dir}/task.ps1"
-            echo "Invoke-Expression -Command ${pwsh_script_dir}/task.ps1" >>"$pwsh_profile_file"
-            chown -R "${USERNAME}:${USERNAME}" "${pwsh_script_dir}"
-        fi
+        echo "Installing pwsh completion..."
+        mkdir -p "$pwsh_script_dir"
+        mv "$pwsh_comp_file" "${pwsh_script_dir}/task.ps1"
+        echo "Invoke-Expression -Command ${pwsh_script_dir}/task.ps1" >>"$pwsh_profile_file"
+        chown -R "${USERNAME}:${USERNAME}" "${pwsh_script_dir}"
         chown -R "${USERNAME}:${USERNAME}" "${pwsh_profile_dir}"
     fi
 }
