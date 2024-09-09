@@ -111,12 +111,11 @@ setup_completions() {
         if task --completion bash >/dev/null 2>&1; then
             echo "Installing bash completion by 'task --completion bash'..."
             task --completion bash >>"$bash_profile_path"
-            chown -R "${USERNAME}:${USERNAME}" "$bash_profile_path"
         elif [ -f "$bash_comp_file" ]; then
             echo "Installing bash completion..."
             cat "$bash_comp_file" >>"$bash_profile_path"
-            chown -R "${USERNAME}:${USERNAME}" "$bash_profile_path"
         fi
+        chown -R "${USERNAME}:${USERNAME}" "$bash_profile_path"
     fi
 
     # zsh
@@ -125,12 +124,11 @@ setup_completions() {
         if task --completion zsh >/dev/null 2>&1; then
             echo "Installing zsh completion by 'task --completion zsh'..."
             task --completion zsh >"/usr/local/share/zsh/site-functions/_task"
-            chown -R "${USERNAME}:${USERNAME}" /usr/local/share/zsh/site-functions/_task
         elif [ -f "$zsh_comp_file" ]; then
             echo "Installing zsh completion..."
             mv "$zsh_comp_file" /usr/local/share/zsh/site-functions/_task
-            chown -R "${USERNAME}:${USERNAME}" /usr/local/share/zsh/site-functions/_task
         fi
+        chown -R "${USERNAME}:${USERNAME}" /usr/local/share/zsh/site-functions/_task
     fi
 
     # fish
@@ -143,12 +141,11 @@ setup_completions() {
         if task --completion fish >/dev/null 2>&1; then
             echo "Installing fish completion by 'task --completion fish'..."
             task --completion fish >"$fish_config_dir/completions/task.fish"
-            chown -R "${USERNAME}:${USERNAME}" "$fish_config_dir"
         elif [ -f "$fish_comp_file" ]; then
             echo "Installing fish completion..."
             mv "$fish_comp_file" "$fish_config_dir/completions/task.fish"
-            chown -R "${USERNAME}:${USERNAME}" "$fish_config_dir"
         fi
+        chown -R "${USERNAME}:${USERNAME}" "$fish_config_dir"
     fi
 
     # pwsh
