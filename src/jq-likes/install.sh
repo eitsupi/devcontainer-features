@@ -257,7 +257,7 @@ fi
 if [ "${JAQ_VERSION}" != "none" ]; then
     check_packages curl ca-certificates
     echo "Downloading jaq ${JAQ_VERSION}..."
-    curl -fsL "https://github.com/01mf02/jaq/releases/download/v${JAQ_VERSION}/jaq-$(uname -m)-unknown-linux-musl" ||
+    curl -fsL "https://github.com/01mf02/jaq/releases/download/v${JAQ_VERSION}/jaq-$(uname -m)-unknown-linux-musl" -o /usr/local/bin/jaq ||
         curl -fsL "https://github.com/01mf02/jaq/releases/download/v${JAQ_VERSION}/jaq-$(uname -m)-unknown-linux-gnu" -o /usr/local/bin/jaq ||
         curl -fsL "https://github.com/01mf02/jaq/releases/download/v${JAQ_VERSION}/jaq-v${JAQ_VERSION}-$(uname -m)-unknown-linux-musl" -o /usr/local/bin/jaq ||
         curl -fsL "https://github.com/01mf02/jaq/releases/download/v${JAQ_VERSION}/jaq-v${JAQ_VERSION}-$(uname -m)-unknown-linux-gnu" -o /usr/local/bin/jaq
