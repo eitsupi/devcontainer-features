@@ -14,5 +14,13 @@
 				"extensions": "httpfs,sqlite_scanner"
 			}
 		}
+	},
+	"community-extensions": {
+		"image": "mcr.microsoft.com/devcontainers/base:debian",
+		"features": {
+			"duckdb-cli": {
+				"communityExtensions": "duckpgq, quack"
+			}
+		}
 	}
 }
