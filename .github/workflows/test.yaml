@@ -109,7 +109,7 @@ jobs:
     strategy:
       matrix:
         features:
-          - duckdb
+          - duckdb-cli
           - go-task
           - jq-likes
           - julia
