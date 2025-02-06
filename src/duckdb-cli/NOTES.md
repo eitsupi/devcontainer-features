@@ -18,7 +18,16 @@ The following example installs `httpfs` and `sqlite_scanner`.
 }
 ```
 
-Currently, only supports signed extensions.
+Similarly, we can install [DuckDB Community Extensions](https://duckdb.org/community_extensions/)
+by specifying the `communityExtensions` option.
+
+```json
+"features": {
+    "ghcr.io/eitsupi/devcontainer-features/duckdb-cli:1": {
+        "communityExtensions": "quack"
+    }
+}
+```
 
 ## References
 

@@ -2,6 +2,7 @@
 
 CLI_VERSION=${VERSION:-"latest"}
 EXTENSIONS=${EXTENSIONS:-""}
+COMMUNITY_EXTENSIONS=${COMMUNITYEXTENSIONS:-""}
 
 USERNAME=${USERNAME:-${_REMOTE_USER:-"automatic"}}
 
@@ -97,13 +98,21 @@ find_version_from_git_tags() {
 
 install_extensions() {
     local username=$1
+    local is_community=${3:-"false"}
     local extensions
+    local sql_suffix
     IFS=',' read -r -a extensions <<< "$2"
 
+    if [ "${is_community}" = "true" ]; then
+        sql_suffix=" from community"
+    else
+        sql_suffix=""
+    fi
+
     for extension in "${extensions[@]}"; do
-        echo "Installing DuckDB '${extension}' extension..."
-        su "${username}" -c "duckdb -c \"install '${extension}'\""
-        echo "Install '${extension}' extension successfully!"
+        echo "Installing the DuckDB ${extension} extension${sql_suffix}..."
+        su "${username}" -c "duckdb -c 'install ${extension}${sql_suffix}'"
+        echo "Install ${extension} extension${sql_suffix} successfully!"
     done
 }
 
@@ -130,6 +139,10 @@ rm -rf /tmp/duckdb-cli
 
 if [ -n "${EXTENSIONS}" ]; then
     install_extensions "${USERNAME}" "${EXTENSIONS}"
+fi
+
+if [ -n "${COMMUNITY_EXTENSIONS}" ]; then
+    install_extensions "${USERNAME}" "${COMMUNITY_EXTENSIONS}" "true"
 fi
 
 # Clean up

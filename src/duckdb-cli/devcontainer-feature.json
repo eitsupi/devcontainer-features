@@ -1,7 +1,7 @@
 {
 	"name": "DuckDB CLI",
 	"id": "duckdb-cli",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"description": "DuckDB is an in-process SQL OLAP database management system.",
 	"documentationURL": "https://github.com/eitsupi/devcontainer-features/tree/main/src/duckdb-cli",
 	"options": {
@@ -20,6 +20,15 @@
 			"proposals": [
 				"",
 				"httpfs,sqlite_scanner"
+			]
+		},
+		"communityExtensions": {
+			"type": "string",
+			"default": "",
+			"description": "Comma separated list of DuckDB Community Extensions to install.",
+			"proposals": [
+				"",
+				"quack"
 			]
 		}
 	},
