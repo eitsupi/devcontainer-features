@@ -1,0 +1,20 @@
+{
+	"name": "Typst",
+	"id": "typst",
+	"version": "0.1.0",
+	"description": "Installs Typst CLI for document typesetting.",
+	"documentationURL": "https://github.com/eitsupi/devcontainer-features/tree/main/src/typst",
+	"options": {
+		"version": {
+			"type": "string",
+			"proposals": [
+				"latest"
+			],
+			"default": "latest",
+			"description": "Select version of Typst CLI."
+		}
+	},
+	"installsAfter": [
+		"ghcr.io/devcontainers/features/common-utils"
+	]
+}
