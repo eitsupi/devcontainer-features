@@ -1,5 +1,5 @@
 {
-	"image": "mcr.microsoft.com/vscode/devcontainers/javascript-node:0-18",
+	"image": "mcr.microsoft.com/vscode/devcontainers/javascript-node:1-20",
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -8,10 +8,7 @@
 				"foxundermoon.shell-format",
 				"timonwong.shellcheck",
 				"redhat.vscode-yaml"
-			],
-			"settings": {
-				"terminal.integrated.defaultProfile.linux": "zsh"
-			}
+			]
 		}
 	},
 	"features": {
