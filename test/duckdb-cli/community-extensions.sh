@@ -6,7 +6,7 @@ set -e
 source dev-container-features-test-lib
 
 # Feature-specific tests
-check "duckpgq" bash -c "duckdb -c 'load duckpgq'"
+check "nanoarrow" bash -c "duckdb -c 'load nanoarrow'"
 check "quack" bash -c "duckdb -c 'load quack'"
 
 # Report result
