@@ -2,7 +2,7 @@
 
 set -e
 
-LATEST_VERSION="$(git ls-remote --tags https://github.com/jqlang/jq | grep -oP "jq\\-\\K[0-9]+\.[0-9]+$" | sed "s/\([a-zA-Z]\+\)/-\1-/g" | sort -t - -k 1,1Vr -k 2,2 -k 3,3nr | sed "s/-//g" | head -n 1)"
+LATEST_VERSION="$(git ls-remote --tags https://github.com/jqlang/jq | grep -oP "[0-9]+\\.[0-9]+\\.[0-9]+" | sort -V | tail -n 1)"
 
 # shellcheck source=/dev/null
 source dev-container-features-test-lib
