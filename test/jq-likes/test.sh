@@ -2,8 +2,7 @@
 
 set -e
 
-LATEST_VERSION="$(git ls-remote --tags https://github.com/jqlang/jq | grep -oP "[0-9]+\\.[0-9]+\\.[0-9]+" | sort -V | ta
-il -n 1)"
+LATEST_VERSION="$(git ls-remote --tags https://github.com/jqlang/jq | grep -oP "[0-9]+\\.[0-9]+\\.[0-9]+" | sort -V | tail -n 1)"
 
 # shellcheck source=/dev/null
 source dev-container-features-test-lib
