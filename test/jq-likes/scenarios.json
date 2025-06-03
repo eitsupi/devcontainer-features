@@ -91,7 +91,7 @@
 			"jq-likes": {
 				"jqVersion": "none",
 				"yqVersion": "4.24",
-				"gojqVersion": "0.7",
+				"gojqVersion": "0.12.12",
 				"xqVersion": "0.2",
 				"jaqVersion": "1"
 			}
