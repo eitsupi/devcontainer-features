@@ -1,0 +1,10 @@
+{
+	"jq-15": {
+		"image": "debian:stable-slim",
+		"features": {
+			"jq-likes": {
+				"jqVersion": "1.5"
+			}
+		}
+	}
+}
