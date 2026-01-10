@@ -7,7 +7,7 @@ LATEST_VERSION="$(git ls-remote --tags https://github.com/jj-vcs/jj | grep -oP "
 # shellcheck source=/dev/null
 source dev-container-features-test-lib
 
-check "version" bash -c "jj --version | grep $LATEST_VERSION"
+check "version" bash -c "jj --version | grep \"$LATEST_VERSION\""
 
 if [ -f /home/vscode/.bashrc_profile ]; then
     check "bash completion profile (non-root)" bash -c "test -s /home/vscode/.bashrc_profile"

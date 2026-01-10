@@ -35,7 +35,7 @@ if [ "${USERNAME}" = "auto" ] || [ "${USERNAME}" = "automatic" ]; then
     if [ "${USERNAME}" = "" ]; then
         USERNAME=root
     fi
-elif [ "${USERNAME}" = "none" ] || ! id -u ${USERNAME} >/dev/null 2>&1; then
+elif [ "${USERNAME}" = "none" ] || ! id -u "${USERNAME}" >/dev/null 2>&1; then
     USERNAME=root
 fi
 
@@ -68,19 +68,24 @@ find_version_from_git_tags() {
     local prefix=${3:-"tags/v"}
     local separator=${4:-"."}
     local last_part_optional=${5:-"false"}
-    if [ "$(echo "${requested_version}" | grep -o "." | wc -l)" != "2" ]; then
-        local escaped_separator=${separator//./\\.}
-        local last_part
-        if [ "${last_part_optional}" = "true" ]; then
-            last_part="(${escaped_separator}[0-9]+)*?"
-        else
-            last_part="${escaped_separator}[0-9]+"
-        fi
-        local regex="${prefix}\\K[0-9]+${escaped_separator}[0-9]+${last_part}$"
-        local version_list
-        check_git
-        check_packages ca-certificates
-        version_list="$(git ls-remote --tags "${repository}" | grep -oP "${regex}" | tr -d ' ' | tr "${separator}" "." | sort -rV)"
+    local dot_count
+    dot_count="$(echo "${requested_version}" | tr -cd '.' | wc -c)"
+
+    local escaped_separator=${separator//./\\.}
+    local last_part
+    if [ "${last_part_optional}" = "true" ]; then
+        last_part="(${escaped_separator}[0-9]+)*?"
+    else
+        last_part="${escaped_separator}[0-9]+"
+    fi
+    local regex="${prefix}\\K[0-9]+${escaped_separator}[0-9]+${last_part}$"
+
+    local version_list
+    check_git
+    check_packages ca-certificates
+    version_list="$(git ls-remote --tags "${repository}" | grep -oP "${regex}" | tr -d ' ' | tr "${separator}" "." | sort -rV)"
+
+    if [ "${dot_count}" != "2" ]; then
         if [ "${requested_version}" = "latest" ] || [ "${requested_version}" = "current" ] || [ "${requested_version}" = "lts" ]; then
             declare -g "${variable_name}"="$(echo "${version_list}" | head -n 1)"
         else
@@ -88,7 +93,10 @@ find_version_from_git_tags() {
             declare -g "${variable_name}"="$(echo "${version_list}" | grep -E -m 1 "^${requested_version//./\\.}([\\.\\s]|$)")"
             set -e
         fi
+    else
+        declare -g "${variable_name}"="${requested_version}"
     fi
+
     if [ -z "${!variable_name}" ] || ! echo "${version_list}" | grep "^${!variable_name//./\\.}$" >/dev/null 2>&1; then
         echo -e "Invalid ${variable_name} value: ${requested_version}\\nValid values:\\n${version_list}" >&2
         exit 1
@@ -115,26 +123,25 @@ setup_completions() {
     fi
 
     # bash
-    if [ -n "${home_dir}" ]; then
-        local bash_profile_path="${home_dir}/.bashrc_profile"
-        local bash_completion_dir="${home_dir}/.local/share/bash-completion/completions"
-        local bash_completion_file="${bash_completion_dir}/jj.bash"
+    local bash_profile_path="${home_dir}/.bashrc_profile"
+    local bash_completion_dir="${home_dir}/.local/share/bash-completion/completions"
+    local bash_completion_file="${bash_completion_dir}/jj.bash"
 
-        mkdir -p "${bash_completion_dir}"
-        if [ "${mode}" = "dynamic" ]; then
-            COMPLETE=bash jj >"${bash_completion_file}"
-        else
-            jj util completion bash >"${bash_completion_file}"
-        fi
-
-        touch "${bash_profile_path}"
-        local source_line="[ -f \"${bash_completion_file}\" ] && source \"${bash_completion_file}\""
-        if ! grep -Fqx "${source_line}" "${bash_profile_path}"; then
-            echo "${source_line}" >>"${bash_profile_path}"
-        fi
-
-        chown -R "${USERNAME}:${USERNAME}" "${home_dir}/.local" "${bash_profile_path}"
+    mkdir -p "${bash_completion_dir}"
+    if [ "${mode}" = "dynamic" ]; then
+        COMPLETE=bash jj >"${bash_completion_file}"
+    else
+        jj util completion bash >"${bash_completion_file}"
     fi
+
+    touch "${bash_profile_path}"
+    local source_line="[ -f \"${bash_completion_file}\" ] && source \"${bash_completion_file}\""
+    if ! grep -Fqx "${source_line}" "${bash_profile_path}"; then
+        echo "${source_line}" >>"${bash_profile_path}"
+    fi
+
+    chown -R "${USERNAME}:${USERNAME}" "${home_dir}/.local"
+    chown "${USERNAME}:${USERNAME}" "${bash_profile_path}"
 
     # zsh
     if [ -d /usr/local/share/zsh/site-functions/ ]; then
@@ -145,7 +152,7 @@ setup_completions() {
             echo "Installing zsh standard completion by 'jj util completion zsh'..."
             jj util completion zsh >"/usr/local/share/zsh/site-functions/_jj"
         fi
-        chown -R "${USERNAME}:${USERNAME}" /usr/local/share/zsh/site-functions/_jj
+        chown "${USERNAME}:${USERNAME}" /usr/local/share/zsh/site-functions/_jj
     fi
 
     # fish
@@ -174,14 +181,16 @@ find_version_from_git_tags JJ_VERSION "https://github.com/jj-vcs/jj"
 check_packages curl ca-certificates tar
 
 echo "Downloading jj (Jujutsu)..."
-mkdir /tmp/jujutsu-cli
+mkdir -p /tmp/jujutsu-cli
 
 asset_arch="x86_64"
 if [ "${architecture}" = "arm64" ]; then
     asset_arch="aarch64"
 fi
 
-curl -sL "https://github.com/jj-vcs/jj/releases/download/v${JJ_VERSION}/jj-v${JJ_VERSION}-${asset_arch}-unknown-linux-musl.tar.gz" | tar xz -C /tmp/jujutsu-cli
+tmp_archive="/tmp/jujutsu-cli/jj-v${JJ_VERSION}-${asset_arch}-unknown-linux-musl.tar.gz"
+curl -fsSL --retry 3 --retry-all-errors -o "${tmp_archive}" "https://github.com/jj-vcs/jj/releases/download/v${JJ_VERSION}/jj-v${JJ_VERSION}-${asset_arch}-unknown-linux-musl.tar.gz"
+tar xzf "${tmp_archive}" -C /tmp/jujutsu-cli
 
 mv "/tmp/jujutsu-cli/jj" /usr/local/bin/jj
 chmod 0755 /usr/local/bin/jj
