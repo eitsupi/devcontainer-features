@@ -28,6 +28,7 @@ jobs:
             beads-cli: ./**/beads-cli/**
             go-task: ./**/go-task/**
             jq-likes: ./**/jq-likes/**
+            jujutsu-cli: ./**/jujutsu-cli/**
             julia: ./**/julia/**
             just: ./**/just/**
             mdbook: ./**/mdbook/**
@@ -100,6 +101,7 @@ jobs:
           - beads-cli
           - go-task
           - jq-likes
+          - jujutsu-cli
           - julia
           - just
           - mdbook
@@ -133,6 +135,7 @@ jobs:
           - beads-cli
           - go-task
           - jq-likes
+          - jujutsu-cli
           - julia
           - just
           - mdbook

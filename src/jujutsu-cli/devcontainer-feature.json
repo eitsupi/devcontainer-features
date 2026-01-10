@@ -1,0 +1,22 @@
+{
+	"name": "Jujutsu CLI (jj)",
+	"id": "jujutsu-cli",
+	"version": "1.0.0",
+	"description": "Installs Jujutsu CLI (jj), a Git-compatible version control system.",
+	"documentationURL": "https://github.com/eitsupi/devcontainer-features/tree/main/src/jujutsu-cli",
+	"options": {
+		"version": {
+			"type": "string",
+			"proposals": [
+				"latest",
+				"0"
+			],
+			"default": "latest",
+			"description": "Select version of Jujutsu CLI (jj)."
+		}
+	},
+	"installsAfter": [
+		"ghcr.io/devcontainers/features/common-utils",
+		"ghcr.io/meaningful-ooo/devcontainer-features/fish"
+	]
+}
