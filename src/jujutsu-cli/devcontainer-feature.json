@@ -23,10 +23,18 @@
 			],
 			"default": "dynamic",
 			"description": "Select shell completion mode for bash/zsh/fish. 'dynamic' is recommended by jj docs."
+		},
+		"configureUserFromGit": {
+			"type": "boolean",
+			"default": true,
+			"description": "If true, read git global user.name/user.email and set jj user.name/user.email (skips if jj user config already exists)."
 		}
 	},
 	"installsAfter": [
 		"ghcr.io/devcontainers/features/common-utils",
 		"ghcr.io/meaningful-ooo/devcontainer-features/fish"
-	]
+	],
+	"postStartCommand": {
+		"jujutsu-cli": "/usr/local/share/jujutsu-cli/scripts/poststart.sh"
+	}
 }

@@ -24,6 +24,15 @@
 			}
 		}
 	},
+	"install-with-fish-non-root-configure-user-from-git": {
+		"image": "mcr.microsoft.com/devcontainers/base:debian",
+		"features": {
+			"ghcr.io/meaningful-ooo/devcontainer-features/fish": {},
+			"jujutsu-cli": {
+				"configureUserFromGit": true
+			}
+		}
+	},
 	"install-with-fish-non-root-0_37_0": {
 		"image": "mcr.microsoft.com/devcontainers/base:debian",
 		"features": {

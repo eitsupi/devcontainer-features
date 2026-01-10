@@ -2,6 +2,7 @@
 
 JJ_VERSION=${VERSION:-"latest"}
 COMPLETION_MODE=${COMPLETIONMODE:-${COMPLETION_MODE:-"dynamic"}}
+CONFIGURE_USER_FROM_GIT=${CONFIGUREUSERFROMGIT:-${CONFIGURE_USER_FROM_GIT:-"true"}}
 
 USERNAME=${USERNAME:-${_REMOTE_USER:-"automatic"}}
 
@@ -187,6 +188,21 @@ chmod 0755 /usr/local/bin/jj
 
 # Validate the installed binary works (e.g., catches glibc incompatibilities early)
 jj --version >/dev/null
+
+# Set lifecycle scripts (postStart)
+LIFECYCLE_SCRIPTS_DIR="/usr/local/share/jujutsu-cli/scripts"
+if [ -f scripts/poststart.sh ]; then
+    mkdir -p "${LIFECYCLE_SCRIPTS_DIR}"
+    cp scripts/poststart.sh "${LIFECYCLE_SCRIPTS_DIR}/poststart.sh"
+fi
+
+# Feature option flag for the postStart script
+mkdir -p /usr/local/share/jujutsu-cli
+if [ "${CONFIGURE_USER_FROM_GIT}" = "true" ]; then
+    : > /usr/local/share/jujutsu-cli/configure-user-from-git.enabled
+else
+    rm -f /usr/local/share/jujutsu-cli/configure-user-from-git.enabled
+fi
 
 # Setup completions
 setup_completions "${COMPLETION_MODE}"

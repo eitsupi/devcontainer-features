@@ -17,6 +17,7 @@ Installs Jujutsu CLI (jj), a Git-compatible version control system.
 |-----|-----|-----|-----|
 | version | Select version of Jujutsu CLI (jj). | string | latest |
 | completionMode | Select shell completion mode for bash/zsh/fish. 'dynamic' is recommended by jj docs. | string | dynamic |
+| configureUserFromGit | If true, read git global user.name/user.email and set jj user.name/user.email (skips if jj user config already exists). | boolean | true |
 
 <!-- markdownlint-disable MD041 -->
 
@@ -29,6 +30,8 @@ Installs Jujutsu CLI (jj), a Git-compatible version control system.
 This feature enables shell completion automatically for bash/zsh/fish.
 
 By default it installs **dynamic completions** (as recommended in jj docs). Set `completionMode` to `standard` if you prefer static completions, or `none` to disable.
+
+If `configureUserFromGit` is enabled (default), it will run on `postStartCommand` (container start) and read `git config --global user.name` / `user.email`, then populate `jj config --user user.name` / `user.email`. This is skipped if `${HOME}/.config/jj/` already exists.
 
 ## References
 
