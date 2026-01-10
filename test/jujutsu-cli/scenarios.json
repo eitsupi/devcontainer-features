@@ -6,6 +6,24 @@
 			"jujutsu-cli": {}
 		}
 	},
+	"install-with-fish-non-root-standard-completion": {
+		"image": "mcr.microsoft.com/devcontainers/base:debian",
+		"features": {
+			"ghcr.io/meaningful-ooo/devcontainer-features/fish": {},
+			"jujutsu-cli": {
+				"completionMode": "standard"
+			}
+		}
+	},
+	"install-with-fish-non-root-no-completion": {
+		"image": "mcr.microsoft.com/devcontainers/base:debian",
+		"features": {
+			"ghcr.io/meaningful-ooo/devcontainer-features/fish": {},
+			"jujutsu-cli": {
+				"completionMode": "none"
+			}
+		}
+	},
 	"install-with-fish-non-root-0_37_0": {
 		"image": "mcr.microsoft.com/devcontainers/base:debian",
 		"features": {

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 JJ_VERSION=${VERSION:-"latest"}
+COMPLETION_MODE=${COMPLETIONMODE:-${COMPLETION_MODE:-"dynamic"}}
 
 USERNAME=${USERNAME:-${_REMOTE_USER:-"automatic"}}
 
@@ -95,9 +96,17 @@ find_version_from_git_tags() {
 }
 
 setup_completions() {
-    local for_bash=${1:-"true"}
-    local for_zsh=${2:-"true"}
-    local for_fish=${3:-"true"}
+    local mode=${1:-"dynamic"}
+
+    if [ "${mode}" = "none" ]; then
+        echo "Skipping shell completions (completionMode=none)."
+        return 0
+    fi
+
+    if [ "${mode}" != "dynamic" ] && [ "${mode}" != "standard" ]; then
+        echo "Invalid completionMode value: ${mode} (expected: dynamic|standard|none)" >&2
+        exit 1
+    fi
 
     local home_dir="/home/${USERNAME}"
     if [ "${USERNAME}" = "root" ]; then
@@ -105,13 +114,17 @@ setup_completions() {
     fi
 
     # bash
-    if [ "$for_bash" = "true" ]; then
+    if [ -n "${home_dir}" ]; then
         local bash_profile_path="${home_dir}/.bashrc_profile"
         local bash_completion_dir="${home_dir}/.local/share/bash-completion/completions"
         local bash_completion_file="${bash_completion_dir}/jj.bash"
 
         mkdir -p "${bash_completion_dir}"
-        jj util completion bash >"${bash_completion_file}"
+        if [ "${mode}" = "dynamic" ]; then
+            COMPLETE=bash jj >"${bash_completion_file}"
+        else
+            jj util completion bash >"${bash_completion_file}"
+        fi
 
         touch "${bash_profile_path}"
         local source_line="[ -f \"${bash_completion_file}\" ] && source \"${bash_completion_file}\""
@@ -123,18 +136,31 @@ setup_completions() {
     fi
 
     # zsh
-    if [ "$for_zsh" = "true" ] && [ -d /usr/local/share/zsh/site-functions/ ]; then
-        echo "Installing zsh completion by 'jj util completion zsh'..."
-        jj util completion zsh >"/usr/local/share/zsh/site-functions/_jj"
+    if [ -d /usr/local/share/zsh/site-functions/ ]; then
+        if [ "${mode}" = "dynamic" ]; then
+            echo "Installing zsh dynamic completion by 'COMPLETE=zsh jj'..."
+            COMPLETE=zsh jj >"/usr/local/share/zsh/site-functions/_jj"
+        else
+            echo "Installing zsh standard completion by 'jj util completion zsh'..."
+            jj util completion zsh >"/usr/local/share/zsh/site-functions/_jj"
+        fi
         chown -R "${USERNAME}:${USERNAME}" /usr/local/share/zsh/site-functions/_jj
     fi
 
     # fish
     local fish_config_dir="${home_dir}/.config/fish"
-    if [ "$for_fish" = "true" ] && [ -d "${fish_config_dir}" ]; then
-        echo "Installing fish completion by 'jj util completion fish'..."
+    if [ -d "${fish_config_dir}" ]; then
+        if [ "${mode}" = "dynamic" ]; then
+            echo "Installing fish dynamic completion by 'COMPLETE=fish jj'..."
+        else
+            echo "Installing fish standard completion by 'jj util completion fish'..."
+        fi
         mkdir -p "${fish_config_dir}/completions"
-        jj util completion fish >"${fish_config_dir}/completions/jj.fish"
+        if [ "${mode}" = "dynamic" ]; then
+            COMPLETE=fish jj >"${fish_config_dir}/completions/jj.fish"
+        else
+            jj util completion fish >"${fish_config_dir}/completions/jj.fish"
+        fi
         chown -R "${USERNAME}:${USERNAME}" "${fish_config_dir}"
     fi
 }
@@ -163,7 +189,7 @@ chmod 0755 /usr/local/bin/jj
 jj --version >/dev/null
 
 # Setup completions
-setup_completions
+setup_completions "${COMPLETION_MODE}"
 
 rm -rf /tmp/jujutsu-cli
 

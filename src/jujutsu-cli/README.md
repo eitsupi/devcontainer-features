@@ -16,6 +16,7 @@ Installs Jujutsu CLI (jj), a Git-compatible version control system.
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
 | version | Select version of Jujutsu CLI (jj). | string | latest |
+| completionMode | Select shell completion mode for bash/zsh/fish. 'dynamic' is recommended by jj docs. | string | dynamic |
 
 <!-- markdownlint-disable MD041 -->
 
@@ -26,6 +27,8 @@ Installs Jujutsu CLI (jj), a Git-compatible version control system.
 ## Notes
 
 This feature enables shell completion automatically for bash/zsh/fish.
+
+By default it installs **dynamic completions** (as recommended in jj docs). Set `completionMode` to `standard` if you prefer static completions, or `none` to disable.
 
 ## References
 

@@ -13,6 +13,16 @@
 			],
 			"default": "latest",
 			"description": "Select version of Jujutsu CLI (jj)."
+		},
+		"completionMode": {
+			"type": "string",
+			"proposals": [
+				"dynamic",
+				"standard",
+				"none"
+			],
+			"default": "dynamic",
+			"description": "Select shell completion mode for bash/zsh/fish. 'dynamic' is recommended by jj docs."
 		}
 	},
 	"installsAfter": [
