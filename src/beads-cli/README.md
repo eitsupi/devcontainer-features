@@ -25,11 +25,7 @@ Installs Beads CLI (bd), a distributed, git-backed graph issue tracker for AI ag
 
 ## Notes
 
-Shell completion is enabled automatically for:
-
-- bash (appends completion script to `~/.bashrc_profile`)
-- zsh (writes `_bd` to `/usr/local/share/zsh/site-functions/` when available)
-- fish (writes `bd.fish` to `~/.config/fish/completions/` when available)
+This feature enables shell completion automatically for bash/zsh/fish.
 
 ## References
 
