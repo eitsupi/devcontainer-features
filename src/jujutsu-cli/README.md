@@ -1,7 +1,7 @@
 
-# Jujutsu CLI (jj) (jujutsu-cli)
+# jj (Jujutsu) (jujutsu-cli)
 
-Installs Jujutsu CLI (jj), a Git-compatible version control system.
+Installs jj (Jujutsu), a Git-compatible version control system.
 
 ## Example Usage
 
@@ -15,7 +15,7 @@ Installs Jujutsu CLI (jj), a Git-compatible version control system.
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| version | Select version of Jujutsu CLI (jj). | string | latest |
+| version | Select version of jj. | string | latest |
 | completionMode | Select shell completion mode for bash/zsh/fish. 'dynamic' is recommended by jj docs. | string | dynamic |
 | configureUserFromGit | If true, read git global user.name/user.email and set jj user.name/user.email (skips if jj user config already exists). | boolean | true |
 
@@ -35,7 +35,7 @@ If `configureUserFromGit` is enabled (default), it will run on `postStartCommand
 
 ## References
 
-- Jujutsu (jj): <https://github.com/jj-vcs/jj>
+- jj (Jujutsu): <https://github.com/jj-vcs/jj>
 
 
 ---

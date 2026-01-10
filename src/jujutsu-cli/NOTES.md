@@ -14,4 +14,4 @@ If `configureUserFromGit` is enabled (default), it will run on `postStartCommand
 
 ## References
 
-- Jujutsu (jj): <https://github.com/jj-vcs/jj>
+- jj (Jujutsu): <https://github.com/jj-vcs/jj>

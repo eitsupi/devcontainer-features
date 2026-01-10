@@ -173,7 +173,7 @@ find_version_from_git_tags JJ_VERSION "https://github.com/jj-vcs/jj"
 
 check_packages curl ca-certificates tar
 
-echo "Downloading Jujutsu CLI (jj)..."
+echo "Downloading jj (Jujutsu)..."
 mkdir /tmp/jujutsu-cli
 
 asset_arch="x86_64"

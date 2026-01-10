@@ -1,8 +1,8 @@
 {
-	"name": "Jujutsu CLI (jj)",
+	"name": "jj (Jujutsu)",
 	"id": "jujutsu-cli",
 	"version": "1.0.0",
-	"description": "Installs Jujutsu CLI (jj), a Git-compatible version control system.",
+	"description": "Installs jj (Jujutsu), a Git-compatible version control system.",
 	"documentationURL": "https://github.com/eitsupi/devcontainer-features/tree/main/src/jujutsu-cli",
 	"options": {
 		"version": {
@@ -12,7 +12,7 @@
 				"0"
 			],
 			"default": "latest",
-			"description": "Select version of Jujutsu CLI (jj)."
+			"description": "Select version of jj."
 		},
 		"completionMode": {
 			"type": "string",

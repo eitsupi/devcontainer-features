@@ -14,7 +14,7 @@ Install [Task](https://taskfile.dev), a task runner / build tool work with `Task
 
 ### [`jujutsu-cli`](src/jujutsu-cli/README.md)
 
-Install [Jujutsu (jj)](https://github.com/jj-vcs/jj), a Git-compatible version control system.
+Install [jj (Jujutsu)](https://github.com/jj-vcs/jj), a Git-compatible version control system.
 
 ### [`beads-cli`](src/beads-cli/README.md)
 
