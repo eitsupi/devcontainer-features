@@ -26,6 +26,7 @@
 	},
 	"install-with-fish-non-root-configure-user-from-git": {
 		"image": "mcr.microsoft.com/devcontainers/base:debian",
+		"postCreateCommand": "git config --global user.name 'Dev Container User' && git config --global user.email 'devcontainer@example.com' && rm -rf ~/.config/jj",
 		"features": {
 			"ghcr.io/meaningful-ooo/devcontainer-features/fish": {},
 			"jujutsu-cli": {
