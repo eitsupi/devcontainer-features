@@ -12,6 +12,10 @@ Install [DuckDB CLI](https://duckdb.org/docs/api/cli). DuckDB is an in-process S
 
 Install [Task](https://taskfile.dev), a task runner / build tool work with `Taskfile.yml` files.
 
+### [`beads-cli`](src/beads-cli/README.md)
+
+Install [Beads CLI (bd)](https://github.com/steveyegge/beads), a distributed, git-backed graph issue tracker for AI agents.
+
 ### [`jq-likes`](src/jq-likes/README.md)
 
 Install [jq](https://stedolan.github.io/jq/),

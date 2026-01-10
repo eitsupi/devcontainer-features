@@ -25,6 +25,7 @@ jobs:
         with:
           filters: |
             duckdb-cli: ./**/duckdb-cli/**
+            beads-cli: ./**/beads-cli/**
             go-task: ./**/go-task/**
             jq-likes: ./**/jq-likes/**
             julia: ./**/julia/**
@@ -96,6 +97,7 @@ jobs:
           - arm64
         features:
           - duckdb-cli
+          - beads-cli
           - go-task
           - jq-likes
           - julia
@@ -128,6 +130,7 @@ jobs:
           - arm64
         features:
           - duckdb-cli
+          - beads-cli
           - go-task
           - jq-likes
           - julia

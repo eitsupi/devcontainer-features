@@ -1,0 +1,22 @@
+{
+	"name": "Beads CLI (bd)",
+	"id": "beads-cli",
+	"version": "1.0.0",
+	"description": "Installs Beads CLI (bd), a distributed, git-backed graph issue tracker for AI agents.",
+	"documentationURL": "https://github.com/eitsupi/devcontainer-features/tree/main/src/beads-cli",
+	"options": {
+		"version": {
+			"type": "string",
+			"proposals": [
+				"latest",
+				"0"
+			],
+			"default": "latest",
+			"description": "Select version of Beads CLI (bd)."
+		}
+	},
+	"installsAfter": [
+		"ghcr.io/devcontainers/features/common-utils",
+		"ghcr.io/meaningful-ooo/devcontainer-features/fish"
+	]
+}
