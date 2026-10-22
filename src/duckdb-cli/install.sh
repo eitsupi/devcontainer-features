@@ -129,9 +129,10 @@ mkdir /tmp/duckdb-cli
 pushd /tmp/duckdb-cli
 
 curl -fL --no-progress-meter "https://github.com/duckdb/duckdb/releases/download/v${CLI_VERSION}/duckdb_cli-linux-$(dpkg --print-architecture).zip" -o duckdb_cli.zip ||
-  curl -fL --no-progress-meter "https://github.com/duckdb/duckdb/releases/download/v${CLI_VERSION}/duckdb_cli-linux-$(uname -m).zip" -o duckdb_cli.zip
+  curl -fL --no-progress-meter "https://github.com/duckdb/duckdb/releases/download/v${CLI_VERSION}/duckdb_cli-linux-$(uname -m).zip" -o duckdb_cli.zip ||
+  curl -fL --no-progress-meter "https://github.com/duckdb/duckdb/releases/download/v${CLI_VERSION}/duckdb-cli-linux-${architecture}.tar.gz" -o duckdb_cli.tar.gz
 
-unzip duckdb_cli.zip
+unzip duckdb_cli.zip || tar -xzf duckdb_cli.tar.gz
 mv duckdb /usr/bin/duckdb
 
 popd
