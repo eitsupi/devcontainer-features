@@ -7,7 +7,7 @@ source dev-container-features-test-lib
 
 # Feature-specific tests
 check "nanoarrow" bash -c "duckdb -c 'load nanoarrow'"
-check "quack" bash -c "duckdb -c 'load quack'"
+check "capi_quack" bash -c "duckdb -c 'load capi_quack'"
 
 # Report result
 reportResults
