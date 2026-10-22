@@ -19,7 +19,7 @@
 		"image": "mcr.microsoft.com/devcontainers/base:debian",
 		"features": {
 			"duckdb-cli": {
-				"communityExtensions": "nanoarrow, quack"
+				"communityExtensions": "nanoarrow, capi_quack"
 			}
 		}
 	}
